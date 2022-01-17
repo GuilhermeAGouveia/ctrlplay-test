@@ -68,10 +68,13 @@ class Login extends React.Component<any, LoginState> {
         window.addEventListener("resize", () => {
             this.handleSelect(this.state.selected)
         })
+
+        //Reponsivididade lottie
         var lottieDimensions : {
             width: number;
             heigth: number
         };
+
         if (window.innerWidth <= 450) {
             lottieDimensions = {
                 width: 350,
@@ -86,6 +89,11 @@ class Login extends React.Component<any, LoginState> {
         this.setState({lottieDimensions})
     }
 
+    /**
+     * 
+     * @param e Elemento que foi selecionado
+     * @description Ajusta a barra de selecao utilizando critérios absolutos de posição
+     */
 
     handleSelect({current : e} : React.RefObject<any>) {
 
@@ -153,11 +161,11 @@ class Login extends React.Component<any, LoginState> {
                     <h2>Study</h2>
                 </Section>
                 <ContainerB activeForm={this.state.activeForm}>
-                    <ButtonB onClick={this.handleSwap}>
+                    <ButtonB onClick={this.handleSwap} whileTap={{scale: 0.9}}>
                         Aluno
                         <FiChevronRight color={'white'} size={30}/>
                     </ButtonB>
-                    <ButtonB onClick={this.handleSwap}>
+                    <ButtonB onClick={this.handleSwap} whileTap={{scale: 0.9}}>
                         Professor
                         <FiChevronRight color={'white'} size={30}/>
                     </ButtonB>

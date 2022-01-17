@@ -92,7 +92,7 @@ export const ContainerB = styled<any>("div")`
   
 `
 
-export const ButtonB = styled("button")`
+export const ButtonB = styled(motion.button)`
   position: relative;
   display: flex;
   justify-content: center;
