@@ -40,43 +40,42 @@
             "id": 1,
             "title": "Tarefa de logaritmos",
             "desc": "Resolva os logaritmos passados em sala de aula, exibindo todos os detalhes de cálculo, responda no caderno ",
-            "info": {
+         
                 "subject": "Matemática",
                 "value": 10,
                 "timeRest": "Tue Jan 18 2022 12:00:33 GMT-0300 (Horário Padrão de Brasília)"
-            }
+            
         },
         {
             "id": 2,
             "title": "Responda a pergunta",
             "desc": "Quem foi o importante membro da cúpula militar do Japão que, apesar de ser contrário a uma guerra contra os Estados Unidos (preferindo uma resolução diplomática), foi o responsável por planejar o ataque japonês contra a base naval de Pearl Harbor?",
-            "info": {
+         
                 "subject": "História",
                 "value": 2,
                 "timeRest": "Tue Jan 25 2022"
-            }
+            
         },
 
         {
             "id": 3,
             "title": "Responda a pergunta",
             "desc": "<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p>",
-            "info": {
+         
                 "subject": "História",
                 "value": 2,
                 "timeRest": "Tue Jan 23 2022"
-            }
+            
         },
 
         {
             "id": 4,
             "title": "Responda a pergunta",
             "desc": "<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p>",
-            "info": {
                 "subject": "História",
                 "value": 2,
                 "timeRest": "Tue Jan 22 2022"
-            }
+        
         }
 ]
 

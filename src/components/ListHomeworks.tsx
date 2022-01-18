@@ -6,30 +6,38 @@ import colors from "../styles/colors"
 import api from "../services/api"
 import {formatDistance} from "date-fns"
 import {ptBR} from "date-fns/locale"
+import Input from "./Input"
 
 interface homework {
     id: string | number;
     title: string;
     desc: string;
-    info: {
-        subject: string;
-        value: number;
-        timeRest: string
-    }
+    subject: string;
+    value: number;
+    timeRest: string;
+
+}
+
+interface homeworkShow extends homework {
+    isLate: boolean
 }
 
 interface ListHomeworkState {
-    homeworks: homework[],
+    homeworks: homeworkShow[],
+    homeworksFilter: homeworkShow[],
     isActive: boolean,
-    showResume: boolean[]
+    showResume: boolean[],
+    filterSelect: string
 }
 class ListHomework extends React.Component<any, ListHomeworkState> {
     constructor(props: any) {
         super(props);
         this.state = {
             homeworks: [],
+            homeworksFilter: [],
             isActive: false,
-            showResume: []
+            showResume: [],
+            filterSelect: ""
         }
     }
 
@@ -37,22 +45,27 @@ class ListHomework extends React.Component<any, ListHomeworkState> {
 
         const {data: homeworksData} = await api.get<homework[]>("/homeworks")
 
-        homeworksData.sort((a, b) => new Date(a.info.timeRest).getTime() - new Date(b.info.timeRest).getTime())
+        homeworksData.sort((a, b) => new Date(a.timeRest).getTime() - new Date(b.timeRest).getTime())
 
         const homeworks = homeworksData.map(item => ({
             ...item,
-            info: {
-                ...item.info,
-                timeRest: formatDistance(new Date(item.info.timeRest), new Date(), { locale: ptBR})
-            }
+            isLate: new Date(item.timeRest).getTime() < new Date().getTime(),
+            timeRest: formatDistance(new Date(item.timeRest), new Date(), { locale: ptBR})
+            
             //desc: item.desc.length > 60 ? item.desc.substring(0, 59) + "..." : item.desc
         }))
 
-        this.setState({homeworks, showResume: Array(homeworks.length).fill(true, 0, homeworks.length)});
+        this.setState({homeworks, homeworksFilter: homeworks, showResume: Array(homeworks.length).fill(true, 0, homeworks.length)});
 
     }
 
     render() {
+        const optionsSelect = [
+            {
+                label: "História",
+                value: "História"
+            }
+        ]
         return (
             <ListSchContainer active={this.state.isActive}>
                 {!this.state.isActive && (
@@ -67,8 +80,8 @@ class ListHomework extends React.Component<any, ListHomeworkState> {
                 </HeaderList>
                
                 {
-                    this.state.homeworks.map((homework, index) => (
-                        <Homework key={"homework" + index}>
+                    this.state.homeworksFilter.map((homework, index) => (
+                        <Homework key={"homework" + index} isLate={homework.isLate}>
                             <div className="titleList">
                                 {homework.title}
 
@@ -92,14 +105,18 @@ class ListHomework extends React.Component<any, ListHomeworkState> {
                     
                             </div>  
                             <div className="infoList">
-                                <span>{homework.info.subject}</span>
-                                <span>{homework.info.value} pts</span>
-                                <span>Faltam {homework.info.timeRest}</span>
+                                <span>{homework.subject}</span>
+                                <span>{homework.value} pts</span>
+                                <span>{homework.isLate ? "Atrasado" : "Faltam"} {homework.timeRest}</span>
                             </div>
                         </Homework>
                     ))
                 }
                 {!this.state.homeworks.length && (<NotHomework>Nenhuma tarefa para ser exibida</NotHomework>)}
+                <FilterContainer>
+                    <InputFilter value={this.state.filterSelect} onChange={e => this.setState({filterSelect: e.target.value})}/>
+                    <ButtonFilter type={'submit'} onClick={() => this.setState(state => ({homeworksFilter: state.homeworks.filter(h => h.subject.toLowerCase().includes(state.filterSelect.toLowerCase()))}))}>Filtrar</ButtonFilter>
+                </FilterContainer>
             </ListSchContainer>
         )
     }
@@ -153,7 +170,7 @@ const HeaderList = styled("div")`
   }
 `
 
-const Homework = styled("li")`
+const Homework = styled<any>("li")`
   position: relative;
   margin: 0px 10px;
   border-bottom: 1px solid #C5C5C5;
@@ -213,6 +230,10 @@ const Homework = styled("li")`
         color: white;
         border-radius: 3px;
       }
+
+      span:nth-child(3){
+          background: ${props => props.isLate ? "rgb(180, 50, 70)" : colors.primary}
+      }
   }
 `
 
@@ -220,8 +241,8 @@ const ActiveButton = styled("button")`
     position: fixed;
     top: 10px;
     right: 20px;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     background: white;
     border: none;
@@ -255,4 +276,44 @@ const NotHomework = styled("div")`
     font-family: sans-serif;
     font-weight: 600;
     color: ${colors.primary}
+`
+
+const FilterContainer = styled("div")`
+  position: fixed;
+  height: 50px;
+  width: 350px;
+  background: white;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center
+`
+const ButtonFilter = styled(motion.button)`
+  position: relative;
+  height: 30px;
+  width: 100px;
+  color: white;
+  background: ${colors.primary};
+  border-radius: 5px;
+  border: none;
+  font-family: Poppins, "sans-serif";
+  font-weight: bold;
+  user-select: none;
+  font-size: 1.05em;
+`
+
+const InputFilter = styled(motion.input)`
+  position: relative;
+  height: 30px;
+  width: 100px;
+  color:  ${colors.primary};
+  border: 1px solid ${colors.primary};
+  border-radius: 5px;
+  font-family: Poppins, "sans-serif";
+  font-weight: bold;
+  user-select: none;
+  font-size: 1.05em;
+  padding: 0px 5px;
+  text-align: center;
+
 `

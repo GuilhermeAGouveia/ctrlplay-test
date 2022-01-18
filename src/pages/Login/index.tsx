@@ -75,7 +75,7 @@ class Login extends React.Component<any, LoginState> {
             optionsSelect: [],
             username: "",
             password: "",
-            selectValue: ""
+            selectValue: "Tipo de ensino"
         };
 
 

@@ -6,24 +6,25 @@ import {FaExclamationCircle} from "react-icons/fa"
 
 interface IInputProps extends AnimationProps, InputHTMLAttributes<any>{
     custom?: number;
+    hiddenIcon?: boolean;
 }
 
 export default function Input ({custom, variants, ...rest} : IInputProps) {
     const [inputValue, setInputValue] = useState("")
 
         return (
-            <InputContainer custom={custom} variants={variants}>
+            <InputContainer custom={custom} variants={variants} width={rest.width} heigth={rest.height}>
                 <InputText value={rest.value} onChange={rest.onChange} type={rest.type} placeholder={rest.placeholder} required={rest.required}/>
-                {inputValue.length <= 2 && <InputIcon color={colors.primary} size={18}/>}
+                {inputValue.length <= 2 && !rest.hiddenIcon && <InputIcon color={colors.primary} size={18}/>}
             </InputContainer>
         )
 
 }
 
-const InputContainer = styled(motion.div)`
+const InputContainer = styled<any>(motion.div)`
   position: relative;
-  width: 90%;;
-  min-height: 50px;
+  width:  ${props => props.width ? props.width : "90%"};
+  min-height:  ${props => props.heigth ? props.heigth : "50px"};
   display: flex;
   justify-content: center;
   align-items: center;
