@@ -1,14 +1,14 @@
 import React from "react"
 import styled from "styled-components"
 import FlatTools from "../../components/FlatTools"
-import ListSchedules from "../../components/ListSchedules"
+import ListHomeworks from "../../components/ListHomeworks"
 import colors from "../../styles/colors"
 export default class Home extends React.Component<any, any>{
     render() {
         return (
             <HomeContainer>
                 <FlatTools/>
-                <ListSchedules/>
+                <ListHomeworks/>
             </HomeContainer>
         )
     }

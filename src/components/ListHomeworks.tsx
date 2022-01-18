@@ -18,24 +18,26 @@ interface homework {
     }
 }
 
-interface ListOrderState {
+interface ListHomeworkState {
     homeworks: homework[],
     isActive: boolean,
-    showResume: boolean
+    showResume: boolean[]
 }
-class ListOrder extends React.Component<any, ListOrderState> {
+class ListHomework extends React.Component<any, ListHomeworkState> {
     constructor(props: any) {
         super(props);
         this.state = {
             homeworks: [],
             isActive: false,
-            showResume: true
+            showResume: []
         }
     }
 
     async componentDidMount() {
 
         const {data: homeworksData} = await api.get<homework[]>("/homeworks")
+
+        homeworksData.sort((a, b) => new Date(a.info.timeRest).getTime() - new Date(b.info.timeRest).getTime())
 
         const homeworks = homeworksData.map(item => ({
             ...item,
@@ -45,7 +47,8 @@ class ListOrder extends React.Component<any, ListOrderState> {
             }
             //desc: item.desc.length > 60 ? item.desc.substring(0, 59) + "..." : item.desc
         }))
-        this.setState({homeworks});
+
+        this.setState({homeworks, showResume: Array(homeworks.length).fill(true, 0, homeworks.length)});
 
     }
 
@@ -65,26 +68,35 @@ class ListOrder extends React.Component<any, ListOrderState> {
                
                 {
                     this.state.homeworks.map((homework, index) => (
-                        <Order key={"homework" + index}>
+                        <Homework key={"homework" + index}>
                             <div className="titleList">
                                 {homework.title}
-                            </div>
-                            <div className="descList">
-                                {this.state.showResume ? homework.desc.substring(0, 59) + "..." : homework.desc}
+
                                 {homework.desc.length > 60 && (
-                                    <ShowResumeController onClick={() => this.setState(state => ({showResume: !state.showResume}))} animate={{
-                                        rotate: this.state.showResume ? 0 : 45
-                                    }} whileTap={{scale: 0.8}}>
+                                    <ShowResumeController 
+                                    onClick={() => {
+                                        this.setState(state => ({showResume: state.showResume.map((item, indexS) => indexS === index ? !item : item)}))
+                                        
+                                    }} 
+                                    animate={{
+                                        rotate: this.state.showResume[index] ? 0 : 45
+                                    }} 
+                                    
+                                    whileTap={{scale: 0.8}}>
                                         +
                                     </ShowResumeController>
                                 )}
+                            </div>
+                            <div className="descList">
+                                {this.state.showResume[index] ? homework.desc.substring(0, 59) + "..." : homework.desc}
+                    
                             </div>  
                             <div className="infoList">
                                 <span>{homework.info.subject}</span>
                                 <span>{homework.info.value} pts</span>
                                 <span>Faltam {homework.info.timeRest}</span>
                             </div>
-                        </Order>
+                        </Homework>
                     ))
                 }
                 {!this.state.homeworks.length && (<NotHomework>Nenhuma tarefa para ser exibida</NotHomework>)}
@@ -93,7 +105,7 @@ class ListOrder extends React.Component<any, ListOrderState> {
     }
 }
 
-export default ListOrder
+export default ListHomework
 
 const ListSchContainer = styled<any>("ul")`
   position: fixed;
@@ -118,7 +130,7 @@ const HeaderList = styled("div")`
   & span:nth-child(1){
     font-family: Montserrat, sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 500;
     font-size: 17px;
 
     display: flex;
@@ -141,19 +153,22 @@ const HeaderList = styled("div")`
   }
 `
 
-const Order = styled("li")`
+const Homework = styled("li")`
   position: relative;
   margin: 0px 10px;
   border-bottom: 1px solid #C5C5C5;
   list-style: none;
   font-family: Poppins, sans-serif;
   cursor: pointer;
+  transition: height .2s;
   .titleList {
     position: relative;
     width: 100%;
     padding: 5px 9px;
+    min-height: 30px;
+    overflow-y: hidden;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     font-size: 15px;
     color: ${colors.primary}
@@ -168,7 +183,7 @@ const Order = styled("li")`
     align-items: center;
     font-size: 13px;
     min-height: 40px;
-    overflow-y: hidden;
+    overflow-y: visible;
     color: rgba(0, 0, 0, 0.80);
   }
 
@@ -218,8 +233,8 @@ const ShowResumeController = styled(motion.button)`
     position: absolute;
     right: 5px;
     top: 5px;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     border: none;
     background: ${colors.primary};
     color: white;

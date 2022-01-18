@@ -18,6 +18,10 @@ const GlobalStyle = createGlobalStyle`
   button:focus, button:hover {
     outline: none;
   }
+
+  button {
+    cursor: pointer;
+  }
 `
 
 export default GlobalStyle
