@@ -2,6 +2,7 @@ import styled from "styled-components";
 import colors from "../../styles/colors";
 import {motion} from "framer-motion";
 import Lottie from "react-lottie";
+import {FiChevronLeft} from "react-icons/fi"
 
 export const Container = styled.div`
   position: relative;
@@ -24,7 +25,7 @@ export const GeneralForm = styled<any>("div")`
   width: 30%;
   right: ${props => props.activeForm ? "0px" : "-35%"};
   min-height: 100%;
-  background: ${colors.secondary};
+  background: #FEFEFE;
   overflow: hidden;
   box-shadow: -5px 5px 5px rgba(0,0,0,0.2);
   transition: right .5s .3s;
@@ -71,7 +72,6 @@ export const ContainerB = styled<any>("div")`
   width: 30%;
   min-height: 100%;
   right: ${props => props.activeForm ? "-30%" : "5px"};
-  min-height: 100%;
   background: ${colors.secondary};
   overflow: visible;
   box-shadow: -5px 5px 5px rgba(0,0,0,0.2);
@@ -111,7 +111,7 @@ export const ButtonB = styled(motion.button)`
   
   @media (max-width: 450px) {
     left: auto;
-
+    width: 250px;
   }
   
   svg {
@@ -176,6 +176,7 @@ export const HeaderE = styled<any>("span")`
   color: ${props => props.selected ? colors.primary : "#ABABAB"};
   text-transform: uppercase;
   transition: color 0.2s ease-in-out;
+  cursor: pointer;
 `
 
 export const LineSelect = styled<any>(motion.span)`
@@ -196,4 +197,12 @@ export const Logo = styled(Lottie)`
     width: 100px;
     height: 100px;
   }
+`
+
+export const BackIcon = styled(FiChevronLeft)`
+  position: fixed;
+  top: 10px; 
+  left: 10px; 
+  z-index: 3; 
+  cursor: pointer;
 `

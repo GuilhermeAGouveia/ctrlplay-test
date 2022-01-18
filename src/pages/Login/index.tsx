@@ -1,10 +1,12 @@
 import React from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import Select from "../../components/Select";
 import logo from "../../assets/lotties/study.json";
+import colors from "../../styles/colors"
+import api from "../../services/api"
 
 import {
-    Logo,
     Container,
     FooterLF,
     GeneralForm,
@@ -16,14 +18,21 @@ import {
     Section,
     SectionForm,
     SectionFormContainer,
-    SectionLF
+    SectionLF,
+    BackIcon
 } from "./styles";
 
 
 import { useNavigate } from "react-router-dom";
-import { FiChevronRight } from "react-icons/fi"
+import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
 import Lottie from "react-lottie";
 
+
+//import Select from "react-select"
+interface OptionSelect {
+    label: string;
+    value: string;
+}
 interface LoginState {
     lineSelectProps: {
         left: number;
@@ -36,6 +45,9 @@ interface LoginState {
         width: number;
         heigth: number
     };
+    optionsSelect: OptionSelect[];
+    username: string;
+    password: string;
 }
 
 class Login extends React.Component<any, LoginState> {
@@ -57,13 +69,16 @@ class Login extends React.Component<any, LoginState> {
             },
             selected: this.headerERef[0],
             loading: false,
-            activeForm: false
+            activeForm: false,
+            optionsSelect: [],
+            username: "",
+            password: ""
         };
 
 
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.handleSelect(this.headerERef[0])
         window.addEventListener("resize", () => {
             this.handleSelect(this.state.selected)
@@ -86,7 +101,12 @@ class Login extends React.Component<any, LoginState> {
                 heigth: 500
             }
         }
-        this.setState({lottieDimensions})
+
+        const { data: optionsSelect} = await api.get<OptionSelect[]>("/selectValues")
+        console.log(optionsSelect)
+
+
+        this.setState({lottieDimensions, optionsSelect})
     }
 
     /**
@@ -110,9 +130,23 @@ class Login extends React.Component<any, LoginState> {
             });
     }
 
-    handleSignin = () => {
+    handleSignin = async () => {
         this.setState(state => ({loading: !state.loading}))
-        this.props.navigate("/home", {k: 1})
+        const {data: users} = await api.get<{
+            username: string;
+            password: string
+        }[]>("/users")
+
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        }
+
+        console.log(users.find(item => item === user))
+
+        this.setState(state => ({loading: !state.loading}))
+
+        if (users.find(item => item.password === user.password && item.username === user.username) !== undefined) this.props.navigate("/home", {k: 1})
     }
 
     handleSignup = () => {
@@ -156,6 +190,7 @@ class Login extends React.Component<any, LoginState> {
         }
         return (
             <Container>
+                {this.state.activeForm && <BackIcon size={30} color={colors.primary} onClick={() => this.setState(state => ({activeForm: !state.activeForm}))}/>}
                 <Section ref={this.sectionRef}>
                     <Lottie options={defaultPropsLottie} width={this.state.lottieDimensions.width} height={this.state.lottieDimensions.heigth}/>
                     <h2>Study</h2>
@@ -206,8 +241,9 @@ class Login extends React.Component<any, LoginState> {
                         <SectionForm>
                             <SectionLF {...defaultProps}>
                                 <Input custom={0} {...defaultProps} type={"text"} placeholder={"User or email"}
-                                       required/>
-                                <Input custom={1} {...defaultProps} type={"password"} placeholder={"Pass"} required/>
+                                       required value={this.state.username} onChange={e => this.setState(({username: e.target.value}))}/>
+                                      <Input custom={1} {...defaultProps} type={"password"} placeholder={"Password"}
+                                       required value={this.state.password} onChange={e => this.setState(({password: e.target.value}))}/>
                             </SectionLF>
                             <FooterLF>
                                 <Button text={"Entrar"} onClick={this.handleSignin} loading={this.state.loading}/>
@@ -219,7 +255,7 @@ class Login extends React.Component<any, LoginState> {
                                 <Input custom={0} {...defaultProps} type={"text"} placeholder={"Name"} required/>
                                 <Input custom={0} {...defaultProps} type={"email"} placeholder={"Email"} required/>
                                 <Input custom={0} {...defaultProps} type={"tel"} placeholder={"Phone"}/>
-                                <Input custom={0} {...defaultProps} type={"select"} placeholder={"Role"} required/>
+                                <Select options={this.state.optionsSelect}/>
                                 <Input custom={1} {...defaultProps} type={"password"} placeholder={"Pass"} required/>
                             </SectionLF>
                             <FooterLF>

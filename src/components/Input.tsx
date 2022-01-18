@@ -1,22 +1,19 @@
-import React, {useState} from "react"
+import React, {useState, InputHTMLAttributes} from "react"
 import styled from "styled-components"
 import {motion, AnimationProps} from "framer-motion"
 import colors from "../styles/colors";
 import {FaExclamationCircle} from "react-icons/fa"
 
-interface IInputProps extends AnimationProps{
-    type: string;
-    placeholder: string;
-    required?: boolean;
+interface IInputProps extends AnimationProps, InputHTMLAttributes<any>{
     custom?: number;
 }
 
-export default function Input ({type, placeholder, required, ...rest} : IInputProps) {
+export default function Input ({custom, variants, ...rest} : IInputProps) {
     const [inputValue, setInputValue] = useState("")
 
         return (
-            <InputContainer {...rest}>
-                <InputText value={inputValue} onChange={e => setInputValue(e.target.value)} type={type} placeholder={placeholder} required={required}/>
+            <InputContainer custom={custom} variants={variants}>
+                <InputText value={rest.value} onChange={rest.onChange} type={rest.type} placeholder={rest.placeholder} required={rest.required}/>
                 {inputValue.length <= 2 && <InputIcon color={colors.primary} size={18}/>}
             </InputContainer>
         )
