@@ -4,7 +4,13 @@ import {motion, AnimationProps} from "framer-motion"
 import colors from "../styles/colors";
 import {FaChevronDown} from "react-icons/fa"
 
+interface option {
+    label: string;
+    value: string;
+}
 interface SelectProps{
+    value: string;
+    setValue: (value: string) => void;
     options: {
         label: string;
         value: string
@@ -12,7 +18,7 @@ interface SelectProps{
 }
 
 
-export default function Input ({options} : SelectProps) {
+export default function Input ({options, setValue, value} : SelectProps) {
     const [selectValue, setSelectValue] = useState({
         label: "Tipo de ensino",
         value: ""
@@ -25,7 +31,7 @@ export default function Input ({options} : SelectProps) {
                 <ListSelectContainer click={click}>
                     <ListSelect>
                         {options.map(option => (
-                            <li key={option.value} onClick={() => setSelectValue(option)}>
+                            <li key={option.value} onClick={() => {setValue(option.value); setSelectValue(option)}}>
                                 {option.label}
                             </li>
                         ))}

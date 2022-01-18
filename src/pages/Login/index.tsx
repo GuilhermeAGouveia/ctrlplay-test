@@ -48,6 +48,8 @@ interface LoginState {
     optionsSelect: OptionSelect[];
     username: string;
     password: string;
+    
+    selectValue: string
 }
 
 class Login extends React.Component<any, LoginState> {
@@ -72,7 +74,8 @@ class Login extends React.Component<any, LoginState> {
             activeForm: false,
             optionsSelect: [],
             username: "",
-            password: ""
+            password: "",
+            selectValue: ""
         };
 
 
@@ -255,7 +258,7 @@ class Login extends React.Component<any, LoginState> {
                                 <Input custom={0} {...defaultProps} type={"text"} placeholder={"Name"} required/>
                                 <Input custom={0} {...defaultProps} type={"email"} placeholder={"Email"} required/>
                                 <Input custom={0} {...defaultProps} type={"tel"} placeholder={"Phone"}/>
-                                <Select options={this.state.optionsSelect}/>
+                                <Select value={this.state.selectValue} setValue={(value => this.setState({selectValue: value}))} options={this.state.optionsSelect}/>
                                 <Input custom={1} {...defaultProps} type={"password"} placeholder={"Pass"} required/>
                             </SectionLF>
                             <FooterLF>
