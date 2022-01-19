@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "api": "json-server --host 192.168.0.200 --port 8080 src/services/server.json"
+    "api": "json-server --host 192.168.0.200 --port 8080 -w src/services/server.json "
   },
   "eslintConfig": {
     "extends": [

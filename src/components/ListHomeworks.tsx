@@ -106,7 +106,7 @@ class ListHomework extends React.Component<any, ListHomeworkState> {
                             <div className="infoList">
                                 <span>{homework.subject}</span>
                                 <span>{homework.value} pts</span>
-                                <span>{homework.isLate ? "Atrasado" : "Faltam"} {homework.timeRest}</span>
+                                <span>{homework.isLate ? "Atrasado em" : "Faltam"} {homework.timeRest}</span>
                             </div>
                         </Homework>
                     ))
@@ -237,7 +237,8 @@ const Homework = styled<any>("li")`
     }
 
     span:nth-child(3) {
-      background: ${props => props.isLate ? "rgb(180, 50, 70)" : colors.primary}
+      background: ${props => props.isLate ? "rgb(180, 50, 70)" : colors.primary};
+      max-width: 150px;
     }
   }
 `
