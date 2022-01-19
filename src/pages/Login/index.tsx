@@ -7,24 +7,24 @@ import colors from "../../styles/colors"
 import api from "../../services/api"
 
 import {
+    BackIcon,
+    ButtonB,
     Container,
+    ContainerB,
     FooterLF,
     GeneralForm,
     HeaderE,
     HeaderLF,
     LineSelect,
-    ContainerB,
-    ButtonB,
     Section,
     SectionForm,
     SectionFormContainer,
-    SectionLF,
-    BackIcon
+    SectionLF
 } from "./styles";
 
 
-import { useNavigate } from "react-router-dom";
-import { FiChevronRight, FiChevronLeft } from "react-icons/fi"
+import {useNavigate} from "react-router-dom";
+import {FiChevronRight} from "react-icons/fi"
 import Lottie from "react-lottie";
 
 
@@ -33,6 +33,7 @@ interface OptionSelect {
     label: string;
     value: string;
 }
+
 interface LoginState {
     lineSelectProps: {
         left: number;
@@ -48,13 +49,13 @@ interface LoginState {
     optionsSelect: OptionSelect[];
     username: string;
     password: string;
-    
+
     selectValue: string
 }
 
 class Login extends React.Component<any, LoginState> {
-    public headerERef: React.RefObject<any>[];
-    public sectionRef: React.RefObject<any>;
+    private headerERef: React.RefObject<any>[];
+    private sectionRef: React.RefObject<any>;
 
     constructor(props: any) {
         super(props);
@@ -82,13 +83,12 @@ class Login extends React.Component<any, LoginState> {
     }
 
     async componentDidMount() {
-        this.handleSelect(this.headerERef[0])
         window.addEventListener("resize", () => {
             this.handleSelect(this.state.selected)
         })
 
         //Reponsivididade lottie
-        var lottieDimensions : {
+        var lottieDimensions: {
             width: number;
             heigth: number
         };
@@ -105,32 +105,33 @@ class Login extends React.Component<any, LoginState> {
             }
         }
 
-        const { data: optionsSelect} = await api.get<OptionSelect[]>("/selectValues")
+        const {data: optionsSelect} = await api.get<OptionSelect[]>("/selectValues")
         console.log(optionsSelect)
 
 
         this.setState({lottieDimensions, optionsSelect})
+        this.handleSelect(this.headerERef[0])
     }
 
     /**
-     * 
+     *
      * @param e Elemento que foi selecionado
      * @description Ajusta a barra de selecao utilizando critérios absolutos de posição
      */
 
-    handleSelect({current : e} : React.RefObject<any>) {
+    handleSelect({current: e}: React.RefObject<any>) {
 
-            this.setState({
-                lineSelectProps: {
-                    ...e.getBoundingClientRect().toJSON(),
-                    // left é calculado pegando a posição absoluta de e na tela menos o que tem antes, que é a largura de sectionRef e os 5 pixels de padding da borda
-                    //left: e.getBoundingClientRect().left - this.sectionRef.current.getBoundingClientRect().width - 5
-                    left: e.getBoundingClientRect().left - this.sectionRef.current.getBoundingClientRect().width - 5
-                },
-                selected: e
-            }, () => {
-                console.log(this.state)
-            });
+        this.setState({
+            lineSelectProps: {
+                width: e.offsetWidth,
+                // left é calculado pegando a posição absoluta de e na tela menos o que tem antes, que é a largura de sectionRef e os 5 pixels de padding da borda
+                left: e.offsetLeft,
+                // left: e.getBoundingClientRect().left - this.sectionRef.current.getBoundingClientRect().width - 5
+            },
+            selected: e
+        }, () => {
+            console.log(this.state)
+        });
     }
 
     handleSignin = async () => {
@@ -193,9 +194,11 @@ class Login extends React.Component<any, LoginState> {
         }
         return (
             <Container>
-                {this.state.activeForm && <BackIcon size={30} color={colors.primary} onClick={() => this.setState(state => ({activeForm: !state.activeForm}))}/>}
+                {this.state.activeForm && <BackIcon size={30} color={colors.primary}
+                                                    onClick={() => this.setState(state => ({activeForm: !state.activeForm}))}/>}
                 <Section ref={this.sectionRef}>
-                    <Lottie options={defaultPropsLottie} width={this.state.lottieDimensions.width} height={this.state.lottieDimensions.heigth}/>
+                    <Lottie options={defaultPropsLottie} width={this.state.lottieDimensions.width}
+                            height={this.state.lottieDimensions.heigth}/>
                     <h2>Study</h2>
                 </Section>
                 <ContainerB activeForm={this.state.activeForm}>
@@ -211,10 +214,11 @@ class Login extends React.Component<any, LoginState> {
                 <GeneralForm activeForm={this.state.activeForm}>
                     <HeaderLF>
                         <HeaderE ref={this.headerERef[0]} id={"header1"}
-                                 selected={this.headerERef[0].current === this.state.selected} onClick={
-                            () => {
-                                this.handleSelect(this.headerERef[0]);
-                            }
+                                 selected={this.headerERef[0].current === this.state.selected}
+                                 onClick={
+                                    () => {
+                                        this.handleSelect(this.headerERef[0]);
+                                    }
                         }>
                             Sign in
                         </HeaderE>
@@ -233,7 +237,7 @@ class Login extends React.Component<any, LoginState> {
                             width: "0px"
                         }}
                                     animate={{
-                                        left: this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",
+                                        left: this.state.lineSelectProps.left -0.25*this.state.lineSelectProps.width + "px",//this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",
                                         width: 1.5 * this.state.lineSelectProps.width + "px"
                                     }}
                         />
@@ -244,9 +248,11 @@ class Login extends React.Component<any, LoginState> {
                         <SectionForm>
                             <SectionLF {...defaultProps}>
                                 <Input custom={0} {...defaultProps} type={"text"} placeholder={"User or email"}
-                                       required value={this.state.username} onChange={e => this.setState(({username: e.target.value}))}/>
-                                      <Input custom={1} {...defaultProps} type={"password"} placeholder={"Password"}
-                                       required value={this.state.password} onChange={e => this.setState(({password: e.target.value}))}/>
+                                       required value={this.state.username}
+                                       onChange={e => this.setState(({username: e.target.value}))}/>
+                                <Input custom={1} {...defaultProps} type={"password"} placeholder={"Password"}
+                                       required value={this.state.password}
+                                       onChange={e => this.setState(({password: e.target.value}))}/>
                             </SectionLF>
                             <FooterLF>
                                 <Button text={"Entrar"} onClick={this.handleSignin} loading={this.state.loading}/>
@@ -258,7 +264,9 @@ class Login extends React.Component<any, LoginState> {
                                 <Input custom={0} {...defaultProps} type={"text"} placeholder={"Name"} required/>
                                 <Input custom={0} {...defaultProps} type={"email"} placeholder={"Email"} required/>
                                 <Input custom={0} {...defaultProps} type={"tel"} placeholder={"Phone"}/>
-                                <Select value={this.state.selectValue} setValue={(value => this.setState({selectValue: value}))} options={this.state.optionsSelect}/>
+                                <Select value={this.state.selectValue}
+                                        setValue={(value => this.setState({selectValue: value}))}
+                                        options={this.state.optionsSelect}/>
                                 <Input custom={1} {...defaultProps} type={"password"} placeholder={"Pass"} required/>
                             </SectionLF>
                             <FooterLF>

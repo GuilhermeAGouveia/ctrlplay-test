@@ -27,7 +27,7 @@ export const GeneralForm = styled<any>("div")`
   min-height: 100%;
   background: #FEFEFE;
   overflow: hidden;
-  box-shadow: -5px 5px 5px rgba(0,0,0,0.2);
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
   transition: right .5s .3s;
 
 
@@ -36,7 +36,7 @@ export const GeneralForm = styled<any>("div")`
     z-index: 2;
     background: white;
     width: 100%;
-    right:  ${props => props.activeForm ? "0px" : "-105%"};
+    right: ${props => props.activeForm ? "0px" : "-105%"};
     top: 0px;
     height: calc(100vh - 10px);
   }
@@ -53,7 +53,7 @@ export const Section = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   h2 {
     font-family: Montserrat;
     font-size: 40px;
@@ -62,7 +62,7 @@ export const Section = styled.div`
   }
 
   @media (max-width: 450px) {
-    height: 80%;
+    height: 75%;
     width: 100%;
   }
 `
@@ -74,22 +74,22 @@ export const ContainerB = styled<any>("div")`
   right: ${props => props.activeForm ? "-30%" : "5px"};
   background: ${colors.secondary};
   overflow: visible;
-  box-shadow: -5px 5px 5px rgba(0,0,0,0.2);
+  box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   transition: right 0.5s;
-  
+
   @media (max-width: 450px) {
     position: relative;
     background: white;
     width: 100%;
     right: auto;
     box-shadow: none;
-    min-height:20%;
+    min-height: 25%;
     align-items: center;
   }
-  
+
 `
 
 export const ButtonB = styled(motion.button)`
@@ -107,13 +107,13 @@ export const ButtonB = styled(motion.button)`
   border: none;
   border-radius: 20px;
   color: white;
-  box-shadow: 5px 5px 5px rgba(0,0,0,0.2);
-  
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.2);
+
   @media (max-width: 450px) {
     left: auto;
     width: 250px;
   }
-  
+
   svg {
     position: absolute;
     right: 10%;
@@ -150,7 +150,7 @@ export const SectionFormContainer = styled(motion.div)`
 
 export const HeaderLF = styled("header")`
   position: relative;
-  height: 50px ;
+  height: 50px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -160,7 +160,7 @@ export const FooterLF = styled("footer")`
   position: absolute;
   overflow: hidden;
   bottom: 0px;
-  height: 70px ;
+  height: 70px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -181,10 +181,10 @@ export const HeaderE = styled<any>("span")`
 
 export const LineSelect = styled<any>(motion.span)`
   position: absolute;
-  //width: ${props => 1.5*props.width + "px"};
+    //width: ${props => 1.5 * props.width + "px"};
   bottom: 0px;
   height: 3px;
-  // left: ${props => (props.left - 0.25*props.width || 0) + "px"};
+    // left: ${props => (props.left - 0.25 * props.width || 0) + "px"};
   background: ${colors.primary};
   //transition: left .3s ease-in;
 `
@@ -201,8 +201,8 @@ export const Logo = styled(Lottie)`
 
 export const BackIcon = styled(FiChevronLeft)`
   position: fixed;
-  top: 10px; 
-  left: 10px; 
-  z-index: 3; 
+  top: 10px;
+  left: 10px;
+  z-index: 3;
   cursor: pointer;
 `
