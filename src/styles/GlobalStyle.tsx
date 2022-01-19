@@ -1,6 +1,31 @@
 import {createGlobalStyle} from "styled-components"
 
+import Poppins from "../assets/fonts/Poppins-Regular.ttf"
+import PoppinsBold from "../assets/fonts/Poppins-Bold.ttf"
+import PoppinsLight from "../assets/fonts/Poppins-Light.ttf"
+
+
 const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Poppins';
+    src: url(${Poppins}) format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Poppins';
+    src: url(${PoppinsBold}) format('truetype');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Poppins';
+    src: url(${PoppinsLight}) format("truetype");
+    font-weight: lighter;
+    font-style: normal;
+  }
+
   * {
     margin: 0;
     padding: 0;
