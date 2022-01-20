@@ -177,6 +177,18 @@ const Card = styled<any>(motion.div)`
       background-size: cover;
   }
 
+
+  .imgCard::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #EEEEEE;
+    z-index: -1;
+
+
+  }
+
   .infoCard {
       position: relative;
       width: 100%;

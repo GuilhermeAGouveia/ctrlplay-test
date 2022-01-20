@@ -1,10 +1,12 @@
 import React from "react"
 import styled from "styled-components"
+import Lottie from "react-lottie"
 import FlatTools from "../../components/FlatTools"
 import ListHomeworks from "../../components/ListHomeworks"
 import colors from "../../styles/colors"
 import grid from "../../assets/icons/grid.svg"
 import api from "../../services/api"
+import loading from "../../assets/lotties/loading.json"
 import { motion } from "framer-motion"
 import {FiFilter, FiSliders, FiRotateCcw, FiActivity} from "react-icons/fi"
 
@@ -43,6 +45,14 @@ export default class Home extends React.Component<any, HomeState> {
   }
 
   render() {
+    const defaultPropsLottie = {
+      autoPlay: true,
+      loop: true,
+      animationData: loading,
+      rendererSettings: {
+          preserveAspectRatio: 'xMidYMid slice'
+      }
+    }
     return (
       <HomeContainer>
         <Header>
@@ -68,6 +78,7 @@ export default class Home extends React.Component<any, HomeState> {
           </ToolBar>
         </Header>
         <Section>
+          {!this.state.subjects[0] && (<Lottie options={defaultPropsLottie} width={40} height={40}/>)}
           {this.state.subjects.map((subject, index) => (
           <SubjectContainer key={"subject" + index}>
             <div className="headerCard">

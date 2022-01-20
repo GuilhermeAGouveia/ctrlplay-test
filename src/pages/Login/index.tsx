@@ -2,6 +2,8 @@ import React from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Select from "../../components/Select";
+import Checkbox from "../../components/Checkbox";
+
 import logo from "../../assets/lotties/study.json";
 import colors from "../../styles/colors"
 import api from "../../services/api"
@@ -19,12 +21,13 @@ import {
     Section,
     SectionForm,
     SectionFormContainer,
-    SectionLF
+    SectionLF,
+    BannerError
 } from "./styles";
 
 
-import {useNavigate} from "react-router-dom";
-import {FiChevronRight} from "react-icons/fi"
+import { useNavigate } from "react-router-dom";
+import { FiChevronRight } from "react-icons/fi"
 import Lottie from "react-lottie";
 
 
@@ -51,6 +54,10 @@ interface LoginState {
     password: string;
 
     selectValue: string
+
+    showPass: boolean;
+
+    errorLogin: boolean
 }
 
 class Login extends React.Component<any, LoginState> {
@@ -76,7 +83,9 @@ class Login extends React.Component<any, LoginState> {
             optionsSelect: [],
             username: "",
             password: "",
-            selectValue: "Tipo de ensino"
+            selectValue: "Tipo de ensino",
+            showPass: false,
+            errorLogin: false
         };
 
 
@@ -105,12 +114,15 @@ class Login extends React.Component<any, LoginState> {
             }
         }
 
-        const {data: optionsSelect} = await api.get<OptionSelect[]>("/selectValues")
-        console.log(optionsSelect)
-
-
-        this.setState({lottieDimensions, optionsSelect})
+        this.setState({ lottieDimensions })
         this.handleSelect(this.headerERef[0])
+
+
+        const { data: optionsSelect } = await api.get<OptionSelect[]>("/selectValues")
+
+
+        this.setState({ optionsSelect })
+
     }
 
     /**
@@ -119,7 +131,7 @@ class Login extends React.Component<any, LoginState> {
      * @description Ajusta a barra de selecao utilizando critérios absolutos de posição
      */
 
-    handleSelect({current: e}: React.RefObject<any>) {
+    handleSelect({ current: e }: React.RefObject<any>) {
 
         this.setState({
             lineSelectProps: {
@@ -134,9 +146,10 @@ class Login extends React.Component<any, LoginState> {
         });
     }
 
-    handleSignin = async () => {
-        this.setState(state => ({loading: !state.loading}))
-        const {data: users} = await api.get<{
+    handleSignin = async (e: any) => {
+        e.preventDefault()
+        this.setState(state => ({ loading: !state.loading }))
+        const { data: users } = await api.get<{
             username: string;
             password: string
         }[]>("/users")
@@ -148,17 +161,19 @@ class Login extends React.Component<any, LoginState> {
 
         console.log(users.find(item => item === user))
 
-        this.setState(state => ({loading: !state.loading}))
+        this.setState(state => ({ loading: !state.loading }))
 
-        if (users.find(item => item.password === user.password && item.username === user.username) !== undefined) this.props.navigate("/home", {k: 1})
+        if (users.find(item => item.password === user.password && item.username === user.username)) this.props.navigate("/home", { k: 1 })
+        else this.setState({ errorLogin: true })
     }
 
-    handleSignup = () => {
-        this.setState(state => ({loading: !state.loading}))
+    handleSignup = (e: any) => {
+        e.preventDefault()
+        this.setState(state => ({ loading: !state.loading }))
     }
 
     handleSwap = () => {
-        this.setState(state => ({activeForm: !state.activeForm}))
+        this.setState(state => ({ activeForm: !state.activeForm }))
     }
 
     render() {
@@ -195,31 +210,31 @@ class Login extends React.Component<any, LoginState> {
         return (
             <Container>
                 {this.state.activeForm && <BackIcon size={30} color={colors.primary}
-                                                    onClick={() => this.setState(state => ({activeForm: !state.activeForm}))}/>}
+                    onClick={() => this.setState(state => ({ activeForm: !state.activeForm }))} />}
                 <Section ref={this.sectionRef}>
                     <Lottie options={defaultPropsLottie} width={this.state.lottieDimensions.width}
-                            height={this.state.lottieDimensions.heigth}/>
+                        height={this.state.lottieDimensions.heigth} />
                     <h2>Study</h2>
                 </Section>
                 <ContainerB activeForm={this.state.activeForm}>
-                    <ButtonB onClick={this.handleSwap} whileTap={{scale: 0.9}}>
+                    <ButtonB onClick={this.handleSwap} whileTap={{ scale: 0.9 }}>
                         Aluno
-                        <FiChevronRight color={'white'} size={30}/>
+                        <FiChevronRight color={'white'} size={30} />
                     </ButtonB>
-                    <ButtonB onClick={this.handleSwap} whileTap={{scale: 0.9}}>
+                    <ButtonB onClick={this.handleSwap} whileTap={{ scale: 0.9 }}>
                         Professor
-                        <FiChevronRight color={'white'} size={30}/>
+                        <FiChevronRight color={'white'} size={30} />
                     </ButtonB>
                 </ContainerB>
                 <GeneralForm activeForm={this.state.activeForm}>
                     <HeaderLF>
                         <HeaderE ref={this.headerERef[0]} id={"header1"}
-                                 selected={this.headerERef[0].current === this.state.selected}
-                                 onClick={
-                                    () => {
-                                        this.handleSelect(this.headerERef[0]);
-                                    }
-                        }>
+                            selected={this.headerERef[0].current === this.state.selected}
+                            onClick={
+                                () => {
+                                    this.handleSelect(this.headerERef[0]);
+                                }
+                            }>
                             Sign in
                         </HeaderE>
                         <HeaderE selected={this.headerERef[1].current === this.state.selected
@@ -236,41 +251,45 @@ class Login extends React.Component<any, LoginState> {
                             left: "0px",
                             width: "0px"
                         }}
-                                    animate={{
-                                        left: this.state.lineSelectProps.left -0.25*this.state.lineSelectProps.width + "px",//this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",
-                                        width: 1.5 * this.state.lineSelectProps.width + "px"
-                                    }}
+                            animate={{
+                                left: this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",//this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",
+                                width: 1.5 * this.state.lineSelectProps.width + "px"
+                            }}
                         />
                     </HeaderLF>
                     <SectionFormContainer animate={{
                         left: this.state.selected === this.headerERef[0].current ? "0px" : "-100%"
                     }}>
                         <SectionForm>
+                            {this.state.errorLogin && (
+                                <BannerError animate={{ opacity: 1, y: 0 }} initial={{ y: -10, opacity: 0 }}>Usuário ou senha inválidos!</BannerError>
+                            )}
                             <SectionLF {...defaultProps}>
                                 <Input custom={0} {...defaultProps} type={"text"} placeholder={"User or email"}
-                                       required value={this.state.username}
-                                       onChange={e => this.setState(({username: e.target.value}))}/>
-                                <Input custom={1} {...defaultProps} type={"password"} placeholder={"Password"}
-                                       required value={this.state.password}
-                                       onChange={e => this.setState(({password: e.target.value}))}/>
+                                    required value={this.state.username}
+                                    onChange={e => this.setState(({ username: e.target.value, errorLogin: false }))} />
+                                <Input custom={1} {...defaultProps} type={this.state.showPass ? "text" : "password"} placeholder={"Password"}
+                                    required value={this.state.password}
+                                    onChange={e => this.setState(({ password: e.target.value, errorLogin: false }))} />
+                                <Checkbox label={"Mostrar senha"} checked={this.state.showPass} onChange={e => this.setState({ showPass: e.target.checked })}></Checkbox>
                             </SectionLF>
                             <FooterLF>
-                                <Button text={"Entrar"} onClick={this.handleSignin} loading={this.state.loading}/>
+                                <Button text={"Entrar"} type={"submit"} onClick={e => this.handleSignin(e)} loading={this.state.loading} />
                             </FooterLF>
                         </SectionForm>
                         <SectionForm>
-                            <SectionLF {...defaultProps}>
-                                <Input custom={0} {...defaultProps} type={"text"} placeholder={"User"} required/>
-                                <Input custom={0} {...defaultProps} type={"text"} placeholder={"Name"} required/>
-                                <Input custom={0} {...defaultProps} type={"email"} placeholder={"Email"} required/>
-                                <Input custom={0} {...defaultProps} type={"tel"} placeholder={"Phone"}/>
+                            <SectionLF>
+                                <Input type={"text"} placeholder={"User"} required />
+                                <Input type={"text"} placeholder={"Name"} required />
+                                <Input type={"email"} placeholder={"Email"} required />
+                                <Input type={"tel"} placeholder={"Phone"} />
                                 <Select value={this.state.selectValue}
-                                        setValue={(value => this.setState({selectValue: value}))}
-                                        options={this.state.optionsSelect}/>
-                                <Input custom={1} {...defaultProps} type={"password"} placeholder={"Pass"} required/>
+                                    setValue={(value => this.setState({ selectValue: value }))}
+                                    options={this.state.optionsSelect} />
+                                <Input type={"password"} placeholder={"Pass"} required />
                             </SectionLF>
                             <FooterLF>
-                                <Button text={"Confirmar"} loading={this.state.loading} onClick={this.handleSignup}/>
+                                <Button text={"Confirmar"} type={"submit"} loading={this.state.loading} onClick={e => this.handleSignup(e)} />
                             </FooterLF>
                         </SectionForm>
                     </SectionFormContainer>
@@ -283,7 +302,7 @@ class Login extends React.Component<any, LoginState> {
 const LoginEnvelop = () => {
     const navigate = useNavigate()
     return (
-        <Login navigate={navigate}/>
+        <Login navigate={navigate} />
     )
 }
 export default LoginEnvelop

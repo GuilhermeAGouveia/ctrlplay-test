@@ -130,7 +130,7 @@ export const SectionLF = styled(motion.section)`
 `
 
 
-export const SectionForm = styled.div`
+export const SectionForm = styled.form`
   position: relative;
   height: 100%;
   width: 50% !important;
@@ -189,15 +189,23 @@ export const LineSelect = styled<any>(motion.span)`
   //transition: left .3s ease-in;
 `
 
-export const Logo = styled(Lottie)`
-  position: relative;
-  width: 300px;
-  height: 300px;
-  @media (max-width: 450px) {
-    width: 100px;
-    height: 100px;
-  }
-`
+// export const LogoContainer = styled<any>("div")`
+//   position: relative;
+//   min-width: ${props => props.width}px;
+//   min-height: ${props => props.height}px;
+
+  
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     background: #EEEEEE;
+//     z-index: -1;
+
+//   }
+
+// `
 
 export const BackIcon = styled(FiChevronLeft)`
   position: fixed;
@@ -205,4 +213,24 @@ export const BackIcon = styled(FiChevronLeft)`
   left: 10px;
   z-index: 3;
   cursor: pointer;
+`
+
+export const BannerError = styled(motion.div)`
+  position: absolute;
+  top: 10px;
+  width: 90%;
+  left: 5%;
+  height: 40px;
+  background: #EF3020;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  border-radius: 5px;
+
+  font-family: Poppins, sans-serif;
+  font-size: 13px;
+  color: white;
+
 `

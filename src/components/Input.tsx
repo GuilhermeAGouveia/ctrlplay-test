@@ -5,17 +5,19 @@ import colors from "../styles/colors";
 import {FaExclamationCircle} from "react-icons/fa"
 
 interface IInputProps extends AnimationProps, InputHTMLAttributes<any>{
+    initial?: string;
     custom?: number;
     hiddenIcon?: boolean;
+    value?: string
 }
 
-export default function Input ({custom, variants, ...rest} : IInputProps) {
-    const [inputValue, setInputValue] = useState("")
+export default function Input ({custom, variants, initial, animate, ...rest} : IInputProps) {
+
 
         return (
-            <InputContainer custom={custom} variants={variants} width={rest.width} heigth={rest.height}>
+            <InputContainer custom={custom} variants={variants} initial={initial} animate={animate} width={rest.width} heigth={rest.height}>
                 <InputText value={rest.value} onChange={rest.onChange} type={rest.type} placeholder={rest.placeholder} required={rest.required}/>
-                {inputValue.length <= 2 && !rest.hiddenIcon && <InputIcon color={colors.primary} size={18}/>}
+                {rest.value && rest.value.length <= 2 && !rest.hiddenIcon && <InputIcon color={colors.primary} size={18}/>}
             </InputContainer>
         )
 
