@@ -43,7 +43,8 @@ const GlobalStyle = createGlobalStyle`
   }
   
   button:focus, button:hover {
-    outline: none;
+    outline-style: none;
+    border-color: transparent;
   }
 
   button {

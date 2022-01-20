@@ -1,4 +1,8 @@
 import React from "react";
+import {useNavigate} from "react-router-dom";
+import {FiChevronRight} from "react-icons/fi"
+import Lottie from "react-lottie";
+
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import Select from "../../components/Select";
@@ -10,6 +14,7 @@ import api from "../../services/api"
 
 import {
     BackIcon,
+    BannerError,
     ButtonB,
     Container,
     ContainerB,
@@ -21,15 +26,8 @@ import {
     Section,
     SectionForm,
     SectionFormContainer,
-    SectionLF,
-    BannerError
+    SectionLF
 } from "./styles";
-
-
-import { useNavigate } from "react-router-dom";
-import { FiChevronRight } from "react-icons/fi"
-import Lottie from "react-lottie";
-
 
 //import Select from "react-select"
 interface OptionSelect {
@@ -114,14 +112,14 @@ class Login extends React.Component<any, LoginState> {
             }
         }
 
-        this.setState({ lottieDimensions })
+        this.setState({lottieDimensions})
         this.handleSelect(this.headerERef[0])
 
 
-        const { data: optionsSelect } = await api.get<OptionSelect[]>("/selectValues")
+        const {data: optionsSelect} = await api.get<OptionSelect[]>("/selectValues")
 
 
-        this.setState({ optionsSelect })
+        this.setState({optionsSelect})
 
     }
 
@@ -131,7 +129,7 @@ class Login extends React.Component<any, LoginState> {
      * @description Ajusta a barra de selecao utilizando critérios absolutos de posição
      */
 
-    handleSelect({ current: e }: React.RefObject<any>) {
+    handleSelect({current: e}: React.RefObject<any>) {
 
         this.setState({
             lineSelectProps: {
@@ -141,15 +139,13 @@ class Login extends React.Component<any, LoginState> {
                 // left: e.getBoundingClientRect().left - this.sectionRef.current.getBoundingClientRect().width - 5
             },
             selected: e
-        }, () => {
-            console.log(this.state)
         });
     }
 
     handleSignin = async (e: any) => {
         e.preventDefault()
-        this.setState(state => ({ loading: !state.loading }))
-        const { data: users } = await api.get<{
+        this.setState(state => ({loading: !state.loading}))
+        const {data: users} = await api.get<{
             username: string;
             password: string
         }[]>("/users")
@@ -159,21 +155,19 @@ class Login extends React.Component<any, LoginState> {
             password: this.state.password
         }
 
-        console.log(users.find(item => item === user))
+        this.setState(state => ({loading: !state.loading}))
 
-        this.setState(state => ({ loading: !state.loading }))
-
-        if (users.find(item => item.password === user.password && item.username === user.username)) this.props.navigate("/home", { k: 1 })
-        else this.setState({ errorLogin: true })
+        if (users.find(item => item.password === user.password && item.username === user.username)) this.props.navigate("/home", {k: 1})
+        else this.setState({errorLogin: true})
     }
 
     handleSignup = (e: any) => {
         e.preventDefault()
-        this.setState(state => ({ loading: !state.loading }))
+        this.setState(state => ({loading: !state.loading}))
     }
 
     handleSwap = () => {
-        this.setState(state => ({ activeForm: !state.activeForm }))
+        this.setState(state => ({activeForm: !state.activeForm}))
     }
 
     render() {
@@ -193,7 +187,7 @@ class Login extends React.Component<any, LoginState> {
             }
         }
 
-        const defaultProps = {
+        const defaultPropsMotion = {
             variants: variants.inputList,
             animate: "visible",
             initial: "hidden"
@@ -210,31 +204,31 @@ class Login extends React.Component<any, LoginState> {
         return (
             <Container>
                 {this.state.activeForm && <BackIcon size={30} color={colors.primary}
-                    onClick={() => this.setState(state => ({ activeForm: !state.activeForm }))} />}
+                                                    onClick={() => this.setState(state => ({activeForm: !state.activeForm}))}/>}
                 <Section ref={this.sectionRef}>
                     <Lottie options={defaultPropsLottie} width={this.state.lottieDimensions.width}
-                        height={this.state.lottieDimensions.heigth} />
+                            height={this.state.lottieDimensions.heigth}/>
                     <h2>Study</h2>
                 </Section>
                 <ContainerB activeForm={this.state.activeForm}>
-                    <ButtonB onClick={this.handleSwap} whileTap={{ scale: 0.9 }}>
+                    <ButtonB onClick={this.handleSwap} whileTap={{scale: 0.9}}>
                         Aluno
-                        <FiChevronRight color={'white'} size={30} />
+                        <FiChevronRight color={'white'} size={30}/>
                     </ButtonB>
-                    <ButtonB onClick={this.handleSwap} whileTap={{ scale: 0.9 }}>
+                    <ButtonB onClick={this.handleSwap} whileTap={{scale: 0.9}}>
                         Professor
-                        <FiChevronRight color={'white'} size={30} />
+                        <FiChevronRight color={'white'} size={30}/>
                     </ButtonB>
                 </ContainerB>
                 <GeneralForm activeForm={this.state.activeForm}>
                     <HeaderLF>
                         <HeaderE ref={this.headerERef[0]} id={"header1"}
-                            selected={this.headerERef[0].current === this.state.selected}
-                            onClick={
-                                () => {
-                                    this.handleSelect(this.headerERef[0]);
-                                }
-                            }>
+                                 selected={this.headerERef[0].current === this.state.selected}
+                                 onClick={
+                                     () => {
+                                         this.handleSelect(this.headerERef[0]);
+                                     }
+                                 }>
                             Sign in
                         </HeaderE>
                         <HeaderE selected={this.headerERef[1].current === this.state.selected
@@ -251,10 +245,10 @@ class Login extends React.Component<any, LoginState> {
                             left: "0px",
                             width: "0px"
                         }}
-                            animate={{
-                                left: this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",//this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",
-                                width: 1.5 * this.state.lineSelectProps.width + "px"
-                            }}
+                                    animate={{
+                                        left: this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",//this.state.lineSelectProps.left - 0.25 * this.state.lineSelectProps.width + "px",
+                                        width: 1.5 * this.state.lineSelectProps.width + "px"
+                                    }}
                         />
                     </HeaderLF>
                     <SectionFormContainer animate={{
@@ -262,34 +256,39 @@ class Login extends React.Component<any, LoginState> {
                     }}>
                         <SectionForm>
                             {this.state.errorLogin && (
-                                <BannerError animate={{ opacity: 1, y: 0 }} initial={{ y: -10, opacity: 0 }}>Usuário ou senha inválidos!</BannerError>
+                                <BannerError animate={{opacity: 1, y: 0}} initial={{y: -10, opacity: 0}}>Usuário ou
+                                    senha inválidos!</BannerError>
                             )}
-                            <SectionLF {...defaultProps}>
-                                <Input custom={0} {...defaultProps} type={"text"} placeholder={"User or email"}
-                                    required value={this.state.username}
-                                    onChange={e => this.setState(({ username: e.target.value, errorLogin: false }))} />
-                                <Input custom={1} {...defaultProps} type={this.state.showPass ? "text" : "password"} placeholder={"Password"}
-                                    required value={this.state.password}
-                                    onChange={e => this.setState(({ password: e.target.value, errorLogin: false }))} />
-                                <Checkbox label={"Mostrar senha"} checked={this.state.showPass} onChange={e => this.setState({ showPass: e.target.checked })}></Checkbox>
+                            <SectionLF {...defaultPropsMotion}>
+                                <Input custom={0} {...defaultPropsMotion} type={"text"} placeholder={"User or email"}
+                                       required value={this.state.username}
+                                       onChange={e => this.setState(({username: e.target.value, errorLogin: false}))}/>
+                                <Input custom={1} {...defaultPropsMotion} type={this.state.showPass ? "text" : "password"}
+                                       placeholder={"Password"}
+                                       required value={this.state.password}
+                                       onChange={e => this.setState(({password: e.target.value, errorLogin: false}))}/>
+                                <Checkbox label={"Mostrar senha"} checked={this.state.showPass}
+                                          onChange={e => this.setState({showPass: e.target.checked})}></Checkbox>
                             </SectionLF>
                             <FooterLF>
-                                <Button text={"Entrar"} type={"submit"} onClick={e => this.handleSignin(e)} loading={this.state.loading} />
+                                <Button text={"Entrar"} type={"submit"} onClick={e => this.handleSignin(e)}
+                                        loading={this.state.loading}/>
                             </FooterLF>
                         </SectionForm>
                         <SectionForm>
                             <SectionLF>
-                                <Input type={"text"} placeholder={"User"} required />
-                                <Input type={"text"} placeholder={"Name"} required />
-                                <Input type={"email"} placeholder={"Email"} required />
-                                <Input type={"tel"} placeholder={"Phone"} />
+                                <Input type={"text"} placeholder={"User"} required/>
+                                <Input type={"text"} placeholder={"Name"} required/>
+                                <Input type={"email"} placeholder={"Email"} required/>
+                                <Input type={"tel"} placeholder={"Phone"}/>
                                 <Select value={this.state.selectValue}
-                                    setValue={(value => this.setState({ selectValue: value }))}
-                                    options={this.state.optionsSelect} />
-                                <Input type={"password"} placeholder={"Pass"} required />
+                                        setValue={(value => this.setState({selectValue: value}))}
+                                        options={this.state.optionsSelect}/>
+                                <Input type={"password"} placeholder={"Pass"} required/>
                             </SectionLF>
                             <FooterLF>
-                                <Button text={"Confirmar"} type={"submit"} loading={this.state.loading} onClick={e => this.handleSignup(e)} />
+                                <Button text={"Confirmar"} type={"submit"} loading={this.state.loading}
+                                        onClick={e => this.handleSignup(e)}/>
                             </FooterLF>
                         </SectionForm>
                     </SectionFormContainer>
@@ -302,7 +301,7 @@ class Login extends React.Component<any, LoginState> {
 const LoginEnvelop = () => {
     const navigate = useNavigate()
     return (
-        <Login navigate={navigate} />
+        <Login navigate={navigate}/>
     )
 }
 export default LoginEnvelop

@@ -1,132 +1,135 @@
 import React from "react"
 import styled from "styled-components";
-import { motion } from "framer-motion"
-import { FiX } from "react-icons/fi";
+import {motion} from "framer-motion"
+import {FiX} from "react-icons/fi";
 
-import { FaTasks } from "react-icons/fa";
+import {FaTasks} from "react-icons/fa";
 import colors from "../styles/colors"
 import api from "../services/api"
-import { formatDistance } from "date-fns"
-import { ptBR } from "date-fns/locale"
+import {formatDistance} from "date-fns"
+import {ptBR} from "date-fns/locale"
 
-interface homework {
-  id: string | number;
-  title: string;
-  desc: string;
-  subject: string;
-  value: number;
-  timeRest: string;
+interface IHomework {
+    id: string | number;
+    title: string;
+    desc: string;
+    subject: string;
+    value: number;
+    timeLeft: string;
 
 }
 
-interface homeworkShow extends homework {
-  isLate: boolean
+interface HomeworkShow extends IHomework {
+    isLate: boolean
 }
 
 interface ListHomeworkState {
-  homeworks: homeworkShow[],
-  homeworksFilter: homeworkShow[],
-  isActive: boolean,
-  showResume: boolean[],
-  filterInputValue: string
+    homeworks: HomeworkShow[],
+    homeworksFilter: HomeworkShow[],
+    isActive: boolean,
+    showResume: boolean[],
+    filterInputValue: string
 }
 
 class ListHomework extends React.Component<any, ListHomeworkState> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      homeworks: [],
-      homeworksFilter: [],
-      isActive: false,
-      showResume: [],
-      filterInputValue: ""
-    }
-  }
-
-  async componentDidMount() {
-
-    const { data: homeworksData } = await api.get<homework[]>("/homeworks")
-
-    homeworksData.sort((a, b) => new Date(a.timeRest).getTime() - new Date(b.timeRest).getTime())
-
-    const homeworks = homeworksData.map(item => ({
-      ...item,
-      isLate: new Date(item.timeRest).getTime() < new Date().getTime(),
-      timeRest: formatDistance(new Date(item.timeRest), new Date(), { locale: ptBR })
-
-      //desc: item.desc.length > 60 ? item.desc.substring(0, 59) + "..." : item.desc
-    }))
-
-    this.setState({
-      homeworks,
-      homeworksFilter: homeworks,
-      showResume: Array(homeworks.length).fill(true, 0, homeworks.length)
-    });
-
-  }
-
-  render() {
-    return (
-      <ListSchContainer active={this.state.isActive}>
-        {!this.state.isActive && (
-          <ActiveButton onClick={() => this.setState(state => ({ isActive: !state.isActive }))}>
-            <FaTasks color={colors.primary} size={21} />
-          </ActiveButton>
-        )}
-        <HeaderList>
-          <span>Lista de Tarefas</span>
-          <span>{this.state.homeworks.length} tarefas</span>
-          <FiX onClick={() => this.setState(state => ({ isActive: !state.isActive }))} color={colors.primary} style={{ cursor: "pointer" }}
-            size={25} />
-        </HeaderList>
-
-        {
-          this.state.homeworksFilter.map((homework, index) => (
-            <Homework key={"homework" + index} isLate={homework.isLate}>
-              <div className="titleList">
-                {homework.title}
-
-                {homework.desc.length > 60 && (
-                  <ShowResumeController
-                    onClick={() => {
-                      this.setState(state => ({ showResume: state.showResume.map((item, indexS) => indexS === index ? !item : item) }))
-                    }}
-                    animate={{
-                      rotate: this.state.showResume[index] ? 0 : 45
-                    }}
-                    whileTap={{ scale: 0.8 }}>
-                    +
-                  </ShowResumeController>
-                )}
-              </div>
-              <div className="descList">
-                {this.state.showResume[index] ? homework.desc.substring(0, 59) + "..." : homework.desc}
-
-              </div>
-              <div className="infoList">
-                <span>{homework.subject}</span>
-                <span>{homework.value} pts</span>
-                <span>{homework.isLate ? "Atrasado em" : "Faltam"} {homework.timeRest}</span>
-              </div>
-            </Homework>
-          ))
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            homeworks: [],
+            homeworksFilter: [],
+            isActive: false,
+            showResume: [],
+            filterInputValue: ""
         }
-        {!this.state.homeworksFilter.length && (<NotHomework>Nenhuma tarefa para ser exibida</NotHomework>)}
-        <FilterContainer>
-          <InputFilter value={this.state.filterInputValue} placeholder={"Digite"}
-            onChange={e => this.setState({ filterInputValue: e.target.value })} />
-          <ButtonFilter bg={"#EFEFEF"} color={colors.primary} whileTap={{ scale: 0.8 }}
-            onClick={() => this.setState(state => ({ homeworksFilter: state.homeworks, filterInputValue: "" }))}>
-            Limpar
-          </ButtonFilter>
-          <ButtonFilter whileTap={{ scale: 0.8 }}
-            onClick={() => this.setState(state => ({ homeworksFilter: state.homeworks.filter(h => h.subject.toLowerCase().includes(state.filterInputValue.toLowerCase())) }))}>
-            Filtrar
-          </ButtonFilter>
-        </FilterContainer>
-      </ListSchContainer>
-    )
-  }
+    }
+
+    async componentDidMount() {
+
+        const {data: homeworksData} = await api.get<IHomework[]>("/homeworks")
+
+        homeworksData.sort((a, b) => new Date(a.timeLeft).getTime() - new Date(b.timeLeft).getTime())
+
+        const homeworks = homeworksData.map(item => ({
+            ...item,
+            isLate: new Date(item.timeLeft).getTime() < new Date().getTime(),
+            timeLeft: formatDistance(new Date(item.timeLeft), new Date(), {locale: ptBR})
+
+        }))
+
+        this.setState({
+            homeworks,
+            homeworksFilter: homeworks,
+            showResume: Array(homeworks.length).fill(true, 0, homeworks.length)
+        });
+
+    }
+
+    render() {
+        return (
+            <ListSchContainer active={this.state.isActive}>
+                {!this.state.isActive && (
+                    <ActiveButton onClick={() => this.setState(state => ({isActive: !state.isActive}))}>
+                        <FaTasks color={colors.primary} size={21}/>
+                    </ActiveButton>
+                )}
+                <HeaderList>
+                    <span>Lista de Tarefas</span>
+                    <span>{this.state.homeworks.length} tarefas</span>
+                    <FiX onClick={() => this.setState(state => ({isActive: !state.isActive}))} color={colors.primary}
+                         style={{cursor: "pointer"}}
+                         size={25}/>
+                </HeaderList>
+
+                {
+                    this.state.homeworksFilter.map((homework, index) => (
+                        <Homework key={"homework" + index} isLate={homework.isLate}>
+                            <div className="titleList">
+                                {homework.title}
+
+                                {homework.desc.length > 60 && (
+                                    <ShowResumeController
+                                        onClick={() => {
+                                            this.setState(state => ({showResume: state.showResume.map((item, indexS) => indexS === index ? !item : item)}))
+                                        }}
+                                        animate={{
+                                            rotate: this.state.showResume[index] ? 0 : 45
+                                        }}
+                                        whileTap={{scale: 0.8}}>
+                                        +
+                                    </ShowResumeController>
+                                )}
+                            </div>
+                            <div className="descList">
+                                {this.state.showResume[index] ? homework.desc.substring(0, 59) + "..." : homework.desc}
+
+                            </div>
+                            <div className="infoList">
+                                <span>{homework.subject}</span>
+                                <span>{homework.value} pts</span>
+                                <span>{homework.isLate ? "Atrasado em" : "Faltam"} {homework.timeLeft}</span>
+                            </div>
+                        </Homework>
+                    ))
+                }
+                {!this.state.homeworksFilter.length && (<NotHomework>Nenhuma tarefa para ser exibida</NotHomework>)}
+                <FilterContainer>
+                    <InputFilter value={this.state.filterInputValue} placeholder={"Digite"}
+                                 onChange={e => this.setState({filterInputValue: e.target.value})}/>
+                    <ButtonFilter bg={"#EFEFEF"} color={colors.primary} whileTap={{scale: 0.8}}
+                                  onClick={() => this.setState(state => ({
+                                      homeworksFilter: state.homeworks,
+                                      filterInputValue: ""
+                                  }))}>
+                        Limpar
+                    </ButtonFilter>
+                    <ButtonFilter whileTap={{scale: 0.8}}
+                                  onClick={() => this.setState(state => ({homeworksFilter: state.homeworks.filter(h => h.subject.toLowerCase().includes(state.filterInputValue.toLowerCase()))}))}>
+                        Filtrar
+                    </ButtonFilter>
+                </FilterContainer>
+            </ListSchContainer>
+        )
+    }
 }
 
 export default ListHomework
@@ -148,8 +151,6 @@ const HeaderList = styled("div")`
   position: relative;
   height: 40px;
   width: 350px;
-  top: 0;
-  right: 0;
   border-bottom: 1px solid #C5C5C5;
   display: flex;
   justify-content: space-around;
@@ -157,7 +158,6 @@ const HeaderList = styled("div")`
 
   & span:nth-child(1) {
     font-family: Montserrat, sans-serif;
-    font-style: normal;
     font-weight: 500;
     font-size: 17px;
 
@@ -187,7 +187,6 @@ const Homework = styled<any>("li")`
   list-style: none;
   font-family: Poppins, sans-serif;
   cursor: pointer;
-  transition: height .2s;
 
   .titleList {
     position: relative;
@@ -280,7 +279,7 @@ const ShowResumeController = styled(motion.button)`
 const NotHomework = styled("div")`
   position: relative;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 40px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -303,7 +302,7 @@ const FilterContainer = styled("div")`
 const ButtonFilter = styled<any>(motion.button)`
   position: relative;
   height: 30px;
-  width: 100px;
+  width: 80px;
   color: ${props => props.color || "white"};
   background: ${props => props.bg || colors.primary};
   border-radius: 5px;
@@ -316,9 +315,9 @@ const ButtonFilter = styled<any>(motion.button)`
 const InputFilter = styled(motion.input)`
   position: relative;
   height: 30px;
-  width: 100px;
+  width: 140px;
   color: ${colors.primary};
-  border: 1px solid ${colors.primary};
+  border: 1px solid ${colors.secondary};
   border-radius: 5px;
   font-family: Poppins, "sans-serif";
   font-weight: bold;
@@ -332,5 +331,8 @@ const InputFilter = styled(motion.input)`
     opacity: 0.7;
   }
 
-
+  &:focus {
+    outline: 0;
+    border: 2px solid ${colors.primary};
+  }
 `

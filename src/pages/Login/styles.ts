@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import colors from "../../styles/colors";
 import {motion} from "framer-motion";
-import Lottie from "react-lottie";
 import {FiChevronLeft} from "react-icons/fi"
 
 export const Container = styled.div`
@@ -94,9 +93,6 @@ export const ContainerB = styled<any>("div")`
 
 export const ButtonB = styled(motion.button)`
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 300px;
   height: 70px;
   font-family: Poppins, sans-serif;
@@ -133,7 +129,7 @@ export const SectionLF = styled(motion.section)`
 export const SectionForm = styled.form`
   position: relative;
   height: 100%;
-  width: 50% !important;
+  width: 50%;
   overflow: hidden;
 `
 
@@ -181,31 +177,10 @@ export const HeaderE = styled<any>("span")`
 
 export const LineSelect = styled<any>(motion.span)`
   position: absolute;
-    //width: ${props => 1.5 * props.width + "px"};
   bottom: 0px;
   height: 3px;
-    // left: ${props => (props.left - 0.25 * props.width || 0) + "px"};
   background: ${colors.primary};
-  //transition: left .3s ease-in;
 `
-
-// export const LogoContainer = styled<any>("div")`
-//   position: relative;
-//   min-width: ${props => props.width}px;
-//   min-height: ${props => props.height}px;
-
-  
-//   &::before {
-//     content: "";
-//     position: absolute;
-//     width: 100%;
-//     height: 100%;
-//     background: #EEEEEE;
-//     z-index: -1;
-
-//   }
-
-// `
 
 export const BackIcon = styled(FiChevronLeft)`
   position: fixed;
@@ -226,7 +201,7 @@ export const BannerError = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   border-radius: 5px;
 
   font-family: Poppins, sans-serif;

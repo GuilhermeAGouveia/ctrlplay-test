@@ -32,30 +32,18 @@ export default function Button(props: ButtonProps) {
 }
 
 const ButtonC = styled(motion.button)`
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
-
   position: relative;
   width: 90%;
   height: 50px;
   border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 11.5px;
   background: ${colors.primary};
-  margin: 10px auto 10px auto;
+  margin: 10px auto;
   font-family: Poppins, sans-serif;
   font-weight: bold;
   font-size: 17px;
   line-height: 36px;
-  cursor: pointer;
   color: #FFFFFF;
   text-transform: uppercase;
   overflow: hidden;
-
-  &:focus {
-    outline-style: none;
-    box-shadow: none;
-    border-color: transparent;
-  }
 `

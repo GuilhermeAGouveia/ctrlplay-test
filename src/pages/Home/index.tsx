@@ -1,109 +1,118 @@
 import React from "react"
 import styled from "styled-components"
 import Lottie from "react-lottie"
+import {motion} from "framer-motion"
+import {FiActivity, FiFilter, FiRotateCcw, FiSliders} from "react-icons/fi"
+
 import FlatCards from "../../components/FlatCards"
 import ListHomeworks from "../../components/ListHomeworks"
+
 import colors from "../../styles/colors"
 import grid from "../../assets/icons/grid.svg"
 import api from "../../services/api"
 import loading from "../../assets/lotties/loading.json"
 import study from "../../assets/lotties/study_greenbg.json"
-import { motion } from "framer-motion"
-import {FiFilter, FiSliders, FiRotateCcw, FiActivity} from "react-icons/fi"
+
 
 interface Module {
-  name: string;
-  aulas: number;
-  duration: number;
-  imgUrl?: string;
+    name: string;
+    aulas: number;
+    duration: number;
+    imgUrl?: string;
 }
 
 interface Subject {
-  name: string;
-  code: string;
-  modules: Module[];
+    name: string;
+    code: string;
+    modules: Module[];
 }
 
 interface HomeState {
-  subjects: Subject[]
+    subjects: Subject[]
 }
+
 export default class Home extends React.Component<any, HomeState> {
-  constructor(props: any){
-    super(props)
-    this.state = {
-      subjects: []
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            subjects: []
+        }
     }
-  }
-  async componentDidMount(){
-    const {data: subjects} = await api.get<Subject[]>("/subjects")
-    this.setState({subjects})
-  }
 
-  getTotalDuration(modules: Module[]) {
-    var total = 0;
-    modules.forEach(e => total += e.duration)
-    return total
-  }
+    async componentDidMount() {
+        const {data: subjects} = await api.get<Subject[]>("/subjects")
+        this.setState({subjects})
+    }
 
-  render() {
-    const defaultPropsLottie = (animationData: any) => ({
-      autoPlay: true,
-      loop: true,
-      animationData,
-      rendererSettings: {
-          preserveAspectRatio: 'xMidYMid slice'
-      }
-    })
+    getTotalDuration(modules: Module[]) {
+        var total = 0;
+        modules.forEach(e => total += e.duration)
+        return total
+    }
+
+    render() {
+        const defaultPropsLottie = (animationData: any) => ({
+            autoPlay: true,
+            loop: true,
+            animationData,
+            rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+            }
+        })
 
 
-    return (
-      <HomeContainer>
-        <Header>
-          <TopBar>
-            <Menu src={grid} width={'40px'} />
-            Página Inicial
-          </TopBar>
-          <HeaderContent>
-            <Salutation><div>Olá, </div><div>Guilherme</div></Salutation>
-           
-            <div><Lottie options={defaultPropsLottie(study)} width={120} height={120}/></div>
-          </HeaderContent>
-          <ToolBar>
-            <Tool whileTap={{ scale: 0.8 }}>
-              <FiFilter color={colors.primary} size={18}/>
-            </Tool>
-            <Tool whileTap={{ scale: 0.8 }}>
-              <FiActivity color={colors.primary} size={18}/>
-            </Tool>
-            <Tool whileTap={{ scale: 0.8 }}>
-              <FiRotateCcw color={colors.primary} size={18}/>
-            </Tool>
-            <Tool whileTap={{ scale: 0.8 }}>
-              <FiSliders color={colors.primary} size={18}/>
-            </Tool>
+        return (
+            <HomeContainer>
+                <Header>
+                    <TopBar>
+                        <Menu src={grid} width={'40px'}/>
+                        Página Inicial
+                    </TopBar>
+                    <HeaderContent>
+                        <Salutation>
+                            <div>Olá,</div>
+                            <div>Guilherme</div>
+                        </Salutation>
 
-          </ToolBar>
-        </Header>
-        <Section>
-          {!this.state.subjects[0] && (<Lottie options={defaultPropsLottie(loading)} width={40} height={40}/>)}
-          {this.state.subjects.map((subject, index) => (
-          <SubjectContainer key={"subject" + index}>
-            <div className="headerCard">
-              <h2>{subject.name}</h2>
-              <span>{this.getTotalDuration(subject.modules)}h</span>
-              <span><span>cód</span>{" " + subject.code}</span>
-            </div>
-            <FlatCards modules={subject.modules}/>
-          </SubjectContainer>
-          ))}
-       
+                        <div><Lottie options={defaultPropsLottie(study)} width={120} height={120}/></div>
+                    </HeaderContent>
+                    <ToolBar>
+                        <Tool whileTap={{scale: 0.8}}>
+                            <FiFilter color={colors.primary} size={18}/>
+                        </Tool>
+                        <Tool whileTap={{scale: 0.8}}>
+                            <FiActivity color={colors.primary} size={18}/>
+                        </Tool>
+                        <Tool whileTap={{scale: 0.8}}>
+                            <FiRotateCcw color={colors.primary} size={18}/>
+                        </Tool>
+                        <Tool whileTap={{scale: 0.8}}>
+                            <FiSliders color={colors.primary} size={18}/>
+                        </Tool>
 
-        </Section>
+                    </ToolBar>
+                </Header>
+                <Section>
+                    {!this.state.subjects[0] && (
+                        <Lottie options={defaultPropsLottie(loading)} width={40} height={40}/>)}
+                    {this.state.subjects.map((subject, index) => (
+                        <SubjectContainer key={"subject" + index}>
+                            <div className="headerCard">
+                                <h2>{subject.name}</h2>
+                                <span>{this.getTotalDuration(subject.modules)}h</span>
+                                <span><span>cód</span>{" " + subject.code}</span>
+                            </div>
+                            <FlatCards modules={subject.modules}/>
+                        </SubjectContainer>
+                    ))}
 
-        <ListHomeworks />
-      </HomeContainer>
-    )
-  }
+
+                </Section>
+
+                <ListHomeworks/>
+            </HomeContainer>
+        )
+    }
 }
 
 
@@ -118,7 +127,6 @@ const HomeContainer = styled("div")`
 const Header = styled("header")`
 
   position: relative;
-  top: 0;
   min-width: 100%;
   height: 30vh;
   min-height: 300px;
@@ -166,6 +174,7 @@ const Salutation = styled("div")`
     color: rgba(255, 255, 255, 0.8);
     font-size: 20px;
   }
+
   div:nth-child(2) {
     font-weight: bold;
     font-size: 25px;
@@ -193,7 +202,7 @@ const ToolBar = styled("nav")`
   background: white;
   border-radius: 20px;
   box-shadow: inset 2px 0 3px rgba(0, 0, 0, 0.2),
-              2px 0 3px  rgba(0, 0, 0, 0.2);
+  2px 0 3px rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
 `
@@ -220,29 +229,10 @@ const Section = styled("section")`
   position: relative;
   width: 90%;
   max-width: 1000px;
-  margin: 0 auto;
-  margin-top: 50px;
+  margin: 50px auto 0 auto;
   border-radius: 5px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
 `
-
-
-// const SubjectContainer = styled("div")`
-//   position: relative;
-//   width: 100%;
-//   padding: 20px;
-//   background: rgba(255, 255, 255, 0.8);
-
-//   h2 {
-//     margin-bottom: 30px;
-//     font-family: Montserrat, sans-serif;
-//     color: ${colors.primary}
-
-//   }
-  
-// `
-
-
 
 const SubjectContainer = styled("div")`
   position: relative;
@@ -272,7 +262,8 @@ const SubjectContainer = styled("div")`
     font-size: 0.8em;
     font-weight: 600;
   }
+
   .headerCard span span {
     font-weight: normal;
   }
-  `
+`

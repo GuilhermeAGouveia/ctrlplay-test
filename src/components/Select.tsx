@@ -1,8 +1,10 @@
 import React, {useState} from "react"
 import styled from "styled-components"
 import {motion} from "framer-motion"
-import colors from "../styles/colors";
 import {FaChevronDown} from "react-icons/fa"
+
+import colors from "../styles/colors";
+
 
 interface SelectProps {
     value: string;
@@ -60,7 +62,7 @@ const SelectContainer = styled<any>(motion.div)`
   text-align: center;
   border-radius: 11.5px;
   border: 2px solid ${colors.primary};
-  margin: 10px auto 10px auto;
+  margin: 10px auto;
   overflow: visible;
   font-family: Poppins, "sans-serif";
   user-select: none;
@@ -89,7 +91,6 @@ const ListSelectContainer = styled<any>("div")`
 const ListSelect = styled("ul")`
   position: relative;
   width: 100%;
-  top: 0;
   font-weight: 500;
 
   li {
