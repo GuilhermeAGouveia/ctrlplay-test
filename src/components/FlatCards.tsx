@@ -16,7 +16,7 @@ interface FlatCardsProps {
     modules: Module[];
 }
 
-function FlatList({modules}: FlatCardsProps) {
+function FlatCards_({modules}: FlatCardsProps) {
 
     useEffect(() => {
         function getCenterElement() {
@@ -50,7 +50,7 @@ function FlatList({modules}: FlatCardsProps) {
 
     function determinatePos() {
         //Tratando click e deslize pequeno. Quando click ocorrer touchMove será zero
-        if (!touchMove || Math.abs(touchMove - touchStart) < 100) {
+        if (!touchMove || Math.abs(touchMove - touchStart) < 70) {
             setReload(!reload);
             return;
         };
@@ -108,7 +108,7 @@ function FlatList({modules}: FlatCardsProps) {
                         <div className="imgCard"></div>
                         <div className="infoCard">
                             <div><strong>{module.aulas}</strong> aulas</div>
-                            <div><strong>{module.duration} h</strong> de duração</div>
+                            <div><strong>{module.duration}h</strong> de duração</div>
                         </div>
                     </Card>
                 ))}
@@ -123,7 +123,7 @@ function FlatList({modules}: FlatCardsProps) {
     )
 }
 
-export default FlatList
+export default FlatCards_
 
 const FlatCardsRoot = styled("div")`
   position: relative;
@@ -212,7 +212,11 @@ const Card = styled<any>(motion.div)`
 const BarIndicatorRoot = styled("div")`
   position: absolute;
   height: 250px;
-  width: 31.3px;
+  width: 25px;
   right: 5px;
   overflow: visible;
+
+  @media (max-width: 450px){
+      right: -10px;
+  }
 `

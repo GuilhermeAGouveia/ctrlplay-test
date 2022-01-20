@@ -1,12 +1,13 @@
 import React from "react"
 import styled from "styled-components"
 import Lottie from "react-lottie"
-import FlatTools from "../../components/FlatTools"
+import FlatCards from "../../components/FlatCards"
 import ListHomeworks from "../../components/ListHomeworks"
 import colors from "../../styles/colors"
 import grid from "../../assets/icons/grid.svg"
 import api from "../../services/api"
 import loading from "../../assets/lotties/loading.json"
+import study from "../../assets/lotties/study_greenbg.json"
 import { motion } from "framer-motion"
 import {FiFilter, FiSliders, FiRotateCcw, FiActivity} from "react-icons/fi"
 
@@ -45,14 +46,16 @@ export default class Home extends React.Component<any, HomeState> {
   }
 
   render() {
-    const defaultPropsLottie = {
+    const defaultPropsLottie = (animationData: any) => ({
       autoPlay: true,
       loop: true,
-      animationData: loading,
+      animationData,
       rendererSettings: {
           preserveAspectRatio: 'xMidYMid slice'
       }
-    }
+    })
+
+
     return (
       <HomeContainer>
         <Header>
@@ -60,7 +63,11 @@ export default class Home extends React.Component<any, HomeState> {
             <Menu src={grid} width={'40px'} />
             Página Inicial
           </TopBar>
-          <Salutation><span>Olá, </span> <span>Guilherme</span></Salutation>
+          <HeaderContent>
+            <Salutation><div>Olá, </div><div>Guilherme</div></Salutation>
+           
+            <div><Lottie options={defaultPropsLottie(study)} width={120} height={120}/></div>
+          </HeaderContent>
           <ToolBar>
             <Tool whileTap={{ scale: 0.8 }}>
               <FiFilter color={colors.primary} size={18}/>
@@ -78,7 +85,7 @@ export default class Home extends React.Component<any, HomeState> {
           </ToolBar>
         </Header>
         <Section>
-          {!this.state.subjects[0] && (<Lottie options={defaultPropsLottie} width={40} height={40}/>)}
+          {!this.state.subjects[0] && (<Lottie options={defaultPropsLottie(loading)} width={40} height={40}/>)}
           {this.state.subjects.map((subject, index) => (
           <SubjectContainer key={"subject" + index}>
             <div className="headerCard">
@@ -86,7 +93,7 @@ export default class Home extends React.Component<any, HomeState> {
               <span>{this.getTotalDuration(subject.modules)}h</span>
               <span><span>cód</span>{" " + subject.code}</span>
             </div>
-            <FlatTools modules={subject.modules}/>
+            <FlatCards modules={subject.modules}/>
           </SubjectContainer>
           ))}
        
@@ -148,21 +155,32 @@ const Salutation = styled("div")`
   position: relative;
   font-family: Poppins, sans-serif;
   padding: 0 10px;
-  height: 60%;
+  height: 100%;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 
-  span:nth-child(1) {
+  div:nth-child(1) {
     font-weight: lighter;
     color: rgba(255, 255, 255, 0.8);
     font-size: 20px;
   }
-  span:nth-child(2) {
+  div:nth-child(2) {
     font-weight: bold;
     font-size: 25px;
     margin-left: 5px;
   }
+`
+
+const HeaderContent = styled("div")`
+  position: relative;
+  height: 60%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
 `
 
 const ToolBar = styled("nav")`
@@ -243,7 +261,9 @@ const SubjectContainer = styled("div")`
   }
 
   .headerCard h2 {
-    color: ${colors.primary}
+    font-size: 1.3em;
+    color: ${colors.primary};
+    max-width: 50%;
 
   }
 

@@ -1,14 +1,4 @@
 {
-  "disciplinas": [
-    {
-      "name": "Matemática",
-      "content": [
-        "Logaritmos",
-        "Factorial",
-        "Analise Combinatória"
-      ]
-    }
-  ],
   "selectValues": [
     {
       "label": "Fundamental I",
@@ -48,7 +38,7 @@
     },
     {
       "id": 2,
-      "title": "Responda a pergunta",
+      "title": "Responda a pergunta no caderno",
       "desc": "Quem foi o importante membro da cúpula militar do Japão que, apesar de ser contrário a uma guerra contra os Estados Unidos (preferindo uma resolução diplomática), foi o responsável por planejar o ataque japonês contra a base naval de Pearl Harbor?",
       "subject": "História",
       "value": 2,
@@ -172,6 +162,50 @@
           "name": "Derivações de Funções Trigonométricas",
           "aulas": 10,
           "duration": 20
+        },
+        {
+          "name": "Derivações de Funções Trigonométricas",
+          "aulas": 10,
+          "duration": 20
+        }
+      ]
+    },
+    {
+      "name": "Cálculo II",
+      "code": "DCE2013",
+      "modules": [
+        {
+          "name": "Conceitos básicos sobre Funções Trigonométricas",
+          "aulas": 10,
+          "duration": 20,
+          "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+        },
+        {
+          "name": "Funções Trigonométricas e suas aplicações",
+          "aulas": 13,
+          "duration": 28
+        },
+        {
+          "name": "Derivações de Funções Trigonométricas",
+          "aulas": 10,
+          "duration": 20
+        }
+      ]
+    },
+    {
+      "name": "Matemática Discreta e suas aplicações",
+      "code": "DCE2192",
+      "modules": [
+        {
+          "name": "Conceitos básicos sobre Funções Trigonométricas",
+          "aulas": 10,
+          "duration": 20,
+          "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+        },
+        {
+          "name": "Funções Trigonométricas e suas aplicações",
+          "aulas": 13,
+          "duration": 28
         },
         {
           "name": "Derivações de Funções Trigonométricas",

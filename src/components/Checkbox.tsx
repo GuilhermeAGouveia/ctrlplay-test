@@ -26,7 +26,7 @@ const CheckboxRoot = styled("div")`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin: 0 20px;
+    margin: 0 25px;
 
     font-family: Poppins, sans-serif;
     font-size: 0.8em;
