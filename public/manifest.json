@@ -1,9 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Ctrl Play Test",
+  "name": "Ctrl Play Test React",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "livro.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
