@@ -100,7 +100,7 @@ export default class Home extends React.Component<any, HomeState> {
                             <div className="headerCard">
                                 <h2>{subject.name}</h2>
                                 <span>{this.getTotalDuration(subject.modules)}h</span>
-                                <span><span>cód</span>{" " + subject.code}</span>
+                                <span><span>cód.</span>{" " + subject.code}</span>
                             </div>
                             <FlatCards modules={subject.modules}/>
                         </SubjectContainer>

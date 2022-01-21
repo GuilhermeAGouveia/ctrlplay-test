@@ -205,9 +205,7 @@ const Card = styled<any>(motion.div)`
     color: ${colors.primary}
   }
 
-  @media (max-height: 600px) {
-    height: 230px;
-  }
+
 `
 
 const BarIndicatorRoot = styled("div")`
