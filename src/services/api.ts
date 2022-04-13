@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const api = axios.create({
-    baseURL: "http://192.168.0.200:8080"
+    baseURL: "https://my-json-server.typicode.com/GuilhermeAGouveia/ctrlplay-test/"
 })
 
 export default api
