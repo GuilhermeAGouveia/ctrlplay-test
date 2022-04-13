@@ -1,0 +1,218 @@
+{
+    "selectValues": [
+      {
+        "label": "Fundamental I",
+        "value": "fundamental1"
+      },
+      {
+        "label": "Fundamental II",
+        "value": "fundamental2"
+      },
+      {
+        "label": "Médio",
+        "value": "medio"
+      },
+      {
+        "label": "Superior",
+        "value": "superior"
+      },
+      {
+        "label": "Mestrado",
+        "value": "mestrado"
+      }
+    ],
+    "users": [
+      {
+        "username": "guilherme",
+        "password": "teste"
+      }
+    ],
+    "homeworks": [
+      {
+        "id": 1,
+        "title": "Tarefa de logaritmos",
+        "desc": "Resolva os logaritmos passados em sala de aula, exibindo todos os detalhes de cálculo, responda no caderno ",
+        "subject": "Matemática",
+        "value": 10,
+        "timeLeft": "Tue Jan 18 2022 12:00:33 GMT-0300 (Horário Padrão de Brasília)"
+      },
+      {
+        "id": 2,
+        "title": "Responda a pergunta no caderno",
+        "desc": "Quem foi o importante membro da cúpula militar do Japão que, apesar de ser contrário a uma guerra contra os Estados Unidos (preferindo uma resolução diplomática), foi o responsável por planejar o ataque japonês contra a base naval de Pearl Harbor?",
+        "subject": "História",
+        "value": 2,
+        "timeLeft": "Tue Jan 25 2022"
+      },
+      {
+        "id": 3,
+        "title": "Responda a pergunta",
+        "desc": "<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p>",
+        "subject": "História",
+        "value": 2,
+        "timeLeft": "Tue Jan 23 2022"
+      },
+      {
+        "id": 4,
+        "title": "Responda a pergunta",
+        "desc": "<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p>",
+        "subject": "História",
+        "value": 2,
+        "timeLeft": "Tue Jan 22 2022"
+      }
+    ],
+  
+    "subjects": [
+      {
+        "name": "Cálculo I",
+        "code": "DCE2012",
+        "modules": [
+          {
+            "name": "Conceitos básicos sobre Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20,
+            "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+          },
+          {
+            "name": "Funções Trigonométricas e suas aplicações",
+            "aulas": 13,
+            "duration": 28
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          }
+        ]
+      },
+      {
+        "name": "Física",
+        "code": "DCE2043",
+        "modules": [
+          {
+            "name": "Conceitos básicos sobre Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20,
+            "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+          },
+          {
+            "name": "Funções Trigonométricas e suas aplicações",
+            "aulas": 13,
+            "duration": 28
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          },
+          {
+            "name": "Conceitos básicos sobre Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20,
+            "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+          },
+          {
+            "name": "Funções Trigonométricas e suas aplicações",
+            "aulas": 13,
+            "duration": 28
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          },
+          {
+            "name": "Conceitos básicos sobre Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20,
+            "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+          },
+          {
+            "name": "Funções Trigonométricas e suas aplicações",
+            "aulas": 13,
+            "duration": 28
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          },
+          {
+            "name": "Conceitos básicos sobre Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20,
+            "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+          },
+          {
+            "name": "Funções Trigonométricas e suas aplicações",
+            "aulas": 13,
+            "duration": 28
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          },
+          {
+            "name": "Funções Trigonométricas e suas aplicações",
+            "aulas": 13,
+            "duration": 28
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          }
+        ]
+      },
+      {
+        "name": "Cálculo II",
+        "code": "DCE2013",
+        "modules": [
+          {
+            "name": "Conceitos básicos sobre Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20,
+            "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+          },
+          {
+            "name": "Funções Trigonométricas e suas aplicações",
+            "aulas": 13,
+            "duration": 28
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          }
+        ]
+      },
+      {
+        "name": "Matemática Discreta e suas aplicações",
+        "code": "DCE2192",
+        "modules": [
+          {
+            "name": "Conceitos básicos sobre Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20,
+            "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
+          },
+          {
+            "name": "Funções Trigonométricas e suas aplicações",
+            "aulas": 13,
+            "duration": 28
+          },
+          {
+            "name": "Derivações de Funções Trigonométricas",
+            "aulas": 10,
+            "duration": 20
+          }
+        ]
+      }
+    ]
+  }
