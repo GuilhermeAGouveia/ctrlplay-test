@@ -51,15 +51,8 @@
         "subject": "História",
         "value": 2,
         "timeLeft": "Tue Jan 23 2022"
-      },
-      {
-        "id": 4,
-        "title": "Responda a pergunta",
-        "desc": "<p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p> <p>Lorem ipsum dolor sit amet consectetur adipiscing elit, leo aliquam nisi aliquet interdum luctus, ante auctor finibus nascetur quisque nunc. Erat adipiscing ante nullam tellus diam arcu ligula rhoncus leo augue, proin ridiculus turpis nostra consequat sed porta luctus maecenas tempus, eu ultricies etiam condimentum libero risus vulputate urna iaculis. Massa eleifend himenaeos eros molestie aliquam habitasse scelerisque nam sagittis inceptos dapibus maecenas maximus, ultricies semper enim ipsum ac cubilia arcu id curae at magna. Sollicitudin ac fringilla nostra suscipit litora habitant ante phasellus commodo dolor, lacinia praesent sociosqu nisi proin netus justo cras convallis sodales, quis parturient facilisi volutpat habitasse ullamcorper pretium class cursus. Ligula nam ultricies integer neque fermentum torquent nec adipiscing turpis scelerisque, proin duis dapibus convallis fames nulla netus nibh eleifend, eu eros euismod at volutpat gravida et pretium viverra.</p>",
-        "subject": "História",
-        "value": 2,
-        "timeLeft": "Tue Jan 22 2022"
       }
+
     ],
   
     "subjects": [
@@ -94,32 +87,6 @@
             "aulas": 10,
             "duration": 20,
             "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
-          },
-          {
-            "name": "Funções Trigonométricas e suas aplicações",
-            "aulas": 13,
-            "duration": 28
-          },
-          {
-            "name": "Derivações de Funções Trigonométricas",
-            "aulas": 10,
-            "duration": 20
-          },
-          {
-            "name": "Conceitos básicos sobre Funções Trigonométricas",
-            "aulas": 10,
-            "duration": 20,
-            "imgUrl": "https://media.gazetadopovo.com.br/2020/10/02151220/Teorema-Pitagoras-900x540.jpg"
-          },
-          {
-            "name": "Funções Trigonométricas e suas aplicações",
-            "aulas": 13,
-            "duration": 28
-          },
-          {
-            "name": "Derivações de Funções Trigonométricas",
-            "aulas": 10,
-            "duration": 20
           },
           {
             "name": "Conceitos básicos sobre Funções Trigonométricas",
