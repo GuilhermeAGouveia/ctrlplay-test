@@ -1,46 +1,85 @@
-# Getting Started with Create React App
+# ctrlplay-test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!---Esses são exemplos. Veja https://shields.io para outras pessoas ou para personalizar este conjunto de escudos. Você pode querer incluir dependências, status do projeto e informações de licença aqui--->
 
-## Available Scripts
+![GitHub repo size](https://img.shields.io/github/repo-size/GuilhermeAGouveia/ctrlplay-test?style=for-the-badge)
+![GitHub language count](https://img.shields.io/github/languages/count/GuilhermeAGouveia/ctrlplay-test?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/GuilhermeAGouveia/ctrlplay-test?style=for-the-badge)
+![Bitbucket open issues](https://img.shields.io/bitbucket/issues/GuilhermeAGouveia/ctrlplay-test?style=for-the-badge)
+![Bitbucket open pull requests](https://img.shields.io/bitbucket/pr-raw/GuilhermeAGouveia/ctrlplay-test?style=for-the-badge)
 
-In the project directory, you can run:
+<img src="https://user-images.githubusercontent.com/81968354/163206899-ccb5299c-1ac2-4f0f-a410-fdac8b897700.png" alt="Ctrl-play preview">
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+> Esse projeto foi desenvolvido para testar conhecimento empregando habilidade genuínas minhas, recorrendo pouco a internet
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 💻 Pré-requisitos
 
-### `npm run build`
+Antes de começar, verifique se você atendeu aos seguintes requisitos:
+<!---Estes são apenas requisitos de exemplo. Adicionar, duplicar ou remover conforme necessário--->
+* Você instalou a versão mais recente de `NodeJS`
+* Você tem uma máquina `<Windows / Linux / Mac>`. Indique qual sistema operacional é compatível / não compatível.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🚀 Instalando ctrlplay-test,
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Para instalar o ctrlplay-test, siga estas etapas:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Faça clone do repositório:
+```
+git clone https://github.com/GuilhermeAGouveia/ctrlplay-test.git
+```
 
-### `npm run eject`
+2. Instale as dependencias node:
+```
+npm i
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## ☕ Usando ctrlplay-test
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Para usar ctrlplay-test, siga estas etapas:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 📫 Contribuindo para ctrlplay-test
+<!---Se o seu README for longo ou se você tiver algum processo ou etapas específicas que deseja que os contribuidores sigam, considere a criação de um arquivo CONTRIBUTING.md separado--->
+Para contribuir com ctrlplay-test, siga estas etapas:
 
-## Learn More
+1. Bifurque este repositório.
+2. Crie um branch: `git checkout -b <nome_branch>`.
+3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
+4. Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
+5. Crie a solicitação de pull.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🤝 Colaboradores
+
+Agradecemos às seguintes pessoas que contribuíram para este projeto:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/GuilhermeAGouveia">
+        <img src="https://avatars.githubusercontent.com/u/81968354?v=4" width="100px;" alt="Foto do Guilherme no GitHub"/><br>
+        <sub>
+          <b>Guilherme Gouveia</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
+
+
+## 😄 Seja um dos contribuidores<br>
+
+Quer fazer parte desse projeto? Clique [AQUI](CONTRIBUTING.md) e leia como contribuir.
+
+## 📝 Licença
+
+Esse projeto está sob licença. Veja o arquivo [LICENÇA](LICENSE.md) para mais detalhes.
+
+[⬆ Voltar ao topo](#ctrlplay-test)<br>
