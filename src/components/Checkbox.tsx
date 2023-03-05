@@ -9,7 +9,7 @@ interface CheckboxProps extends InputHTMLAttributes<any> {
 export default function Checkbox({width, height, label, ...rest}: CheckboxProps) {
     return (
         <CheckboxRoot>
-            <CheckboxInput type={"checkbox"} {...rest}/>
+            <CheckboxInput data-testid={"checkbox"} type={"checkbox"} {...rest}/>
             <CheckboxContainer>
                 <CheckboxIcon/>
             </CheckboxContainer>
