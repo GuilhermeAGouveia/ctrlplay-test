@@ -273,7 +273,7 @@ class Login extends React.Component<any, LoginState> {
                             <FooterLF>
                                 <Button text={"Entrar"} type={"submit"} onClick={e => this.handleSignin(e)}
                                         loading={this.state.loading}/>
-                                        <Button text={"Visitante"} type={"button"} onClick={e => this.props.navigate("/home", {k: 1}}
+                                <Button text={"Visitante"} type={"button"} onClick={e => this.props.navigate("/home", {k: 1})}
                                         loading={this.state.loading}/>
                             </FooterLF>
                         </SectionForm>
