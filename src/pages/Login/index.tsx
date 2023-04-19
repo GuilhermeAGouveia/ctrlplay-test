@@ -1,16 +1,16 @@
 import React from "react";
-import {useNavigate} from "react-router-dom";
-import {FiChevronRight} from "react-icons/fi"
+import { FiChevronRight } from "react-icons/fi";
 import Lottie from "react-lottie";
+import { useNavigate } from "react-router-dom";
 
-import Input from "../../components/Input";
 import Button from "../../components/Button";
-import Select from "../../components/Select";
 import Checkbox from "../../components/Checkbox";
+import Input from "../../components/Input";
+import Select from "../../components/Select";
 
 import logo from "../../assets/lotties/study.json";
-import colors from "../../styles/colors"
-import api from "../../services/api"
+import api from "../../services/api";
+import colors from "../../styles/colors";
 
 import {
     BackIcon,
@@ -272,6 +272,8 @@ class Login extends React.Component<any, LoginState> {
                             </SectionLF>
                             <FooterLF>
                                 <Button text={"Entrar"} type={"submit"} onClick={e => this.handleSignin(e)}
+                                        loading={this.state.loading}/>
+                                <Button text={"Visitante"} type={"button"} onClick={e => this.props.navigate("/home", {k: 1})}
                                         loading={this.state.loading}/>
                             </FooterLF>
                         </SectionForm>

@@ -1,7 +1,7 @@
+import { motion } from "framer-motion";
+import { FiChevronLeft } from "react-icons/fi";
 import styled from "styled-components";
 import colors from "../../styles/colors";
-import {motion} from "framer-motion";
-import {FiChevronLeft} from "react-icons/fi"
 
 export const Container = styled.div`
   position: relative;
@@ -156,9 +156,11 @@ export const FooterLF = styled("footer")`
   position: absolute;
   overflow: hidden;
   bottom: 0px;
-  height: 70px;
+  height: auto;
   width: 100%;
   display: flex;
+  flex-direction: column;
+
   justify-content: center;
   align-items: center;
 `
